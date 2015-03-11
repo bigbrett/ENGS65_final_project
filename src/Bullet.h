@@ -22,7 +22,7 @@ class Bullet: public GameObject
 public:
 	Bullet();
     Bullet(Point startLoc, int xDirectionSpeed, int yDirectionSpeed,
-           int _health, int _damage);
+           int _damage);
     virtual ~Bullet() {}; // Nothing to destroy
     
     /* Overloaded functions */
