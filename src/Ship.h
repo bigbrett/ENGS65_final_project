@@ -16,7 +16,6 @@
 
 class Ship: public GameObject {
 	static SDL_Surface *image;	// The image used for the class
-	static bool init;			// See if the class has been initialized
 	int shield;					// Shield to reduce the damage taken by colliding with other objects
 
 public:

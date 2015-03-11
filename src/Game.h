@@ -12,18 +12,25 @@
 
 #include <SDL2/SDL.h>
 #include <cstdlib>
-#include <forward_list>
+#include <vector>
 //#include "AsteroidGlobals.h"
 #include "GameObject.h"
 
 using namespace std;
 
 class Game {
-	forward_list<GameObject> objects; 	// A SLL to hold all the GameObjects
+	vector<GameObject*> objectsInPlay; 	// A SLL to hold all the GameObjects
 	int lives;							// Number of lives the player has remaining
+    int score;                          // Player current score
 public:
 	Game();
 	virtual ~Game();
+    
+    // Have the game update its state. Returns TRUE if game still running (FALSE when player runs out of lives)
+    bool updateState();
+    
+    // Have the game draw itself onto the window. Returns TRUE on successful draw
+    bool drawGame(SDL_Surface *gameWindow);
 };
 
 #endif /* GAME_H_ */
