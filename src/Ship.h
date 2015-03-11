@@ -42,7 +42,7 @@ public:
 
 };
 
-#endif /* SHIP_H_ */
+
 
 
 //The dot that will move around on the screen
@@ -75,3 +75,6 @@ private:
     //The velocity of the dot
     int mVelX, mVelY;
 };
+
+
+#endif /* SHIP_H_ */

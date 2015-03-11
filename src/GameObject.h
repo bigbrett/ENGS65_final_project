@@ -15,6 +15,7 @@
 #include <cstdlib>
 #include <string>
 #include "AsteroidGlobals.h"
+#include "Texture.h"
 #include <list>
 
 #define OBJ_DEFAULT_LOCATION    Point(-1,-1)
@@ -29,19 +30,10 @@ using namespace std;
 class GameObject
 {
 protected:
-    struct Point
-    {
-        int x;
-        int y;
-        
-        Point(){};
-        Point(int x, int y) : x(x), y(y) {};
-    };
-    
-    /* Variables are all protected, to allow children access */
 	Asteroid_GameObject_Type objectType;	// Set to the type of GameObject
-    Point location;							// Current location
-	int edgeLength;							// Objects are squares
+    SDL_Point current_location;				// Current location
+    SDL_Rect collision_rect;                // Object's collision rectangle
+    
 	Asteroid_Direction rotation;			// Rotation of the object,
                                             // AD_N = 0 degrees of rotation
 	int speedX;                             // +/- x speed
@@ -49,9 +41,18 @@ protected:
 	int health;								// Current health
 	int damage;								// Base damage the object does
 
+    //The window we'll be rendering to
+    SDL_Window* gWindow = NULL;
+    
+    //The window renderer
+    SDL_Renderer* gRenderer = NULL;
+    
+    //Scene textures
+    Texture gTexture;
+    
+    
 public:
     /* Constructors and Destructor */ 
-<<<<<<< HEAD
     GameObject() :
         objectType(AGT_GAMEOBJECT),
         startLocation(OBJ_DEFAULT_LOCATION),
@@ -62,13 +63,6 @@ public:
         speedY(OBJ_DEFAULT_SPEED),
         health(OBJ_DEFAULT_HEALTH),
         damage(OBJ_DEFAULT_DAMAGE) {};
-=======
-    GameObject()
-    : objectType(AGT_GAMEOBJECT), location(OBJ_DEFAULT_LOCATION),
-    edgeLength(OBJ_DEFAULT_SIZE), rotation(OBJ_DEFAULT_ROTATION),
-    speedX(OBJ_DEFAULT_SPEED), speedY(OBJ_DEFAULT_SPEED),
-    health(OBJ_DEFAULT_HEALTH), damage(OBJ_DEFAULT_DAMAGE) {};
->>>>>>> bf42d7d5bf677c18b25e28e7aad30f663b074026
     
     GameObject(Asteroid_GameObject_Type type, Point startLoc, int edgeLength,
                Asteroid_Direction _rotation, int xSpeed, int ySpeed,
@@ -80,25 +74,44 @@ public:
     virtual ~GameObject(){delete &location;};
 
 	// Make the object move
-	virtual void move(){location.x = location.x + speedX;
-        location.y = location.y + speedY;};
+	virtual void move()
+    {
+        location.x = location.x + speedX;
+        location.y = location.y + speedY;
+    };
 
 	// Draw the object onto the game window surface
 	// Doesn't do anything in this class
 	virtual void draw(SDL_Surface *gameWindow){};
 
 	// Damage the object from a collision
-	virtual void takeDmg(int dmg, Asteroid_GameObject_Type type){health -= dmg;};
+	virtual void takeDmg(int dmg, Asteroid_GameObject_Type type)
+    {
+        health -= dmg;
+    };
     
     // Destroy the object; returns a list of new objects that replace it
-    virtual list<GameObject*> destroy(){return list<GameObject*>();};
+    virtual list<GameObject*> destroy()
+    {
+        return list<GameObject*>();
+    };
     
     // See if the object is destroyed
-    bool isDestroyed(){return health<=0;};
+    bool isDestroyed()
+    {
+        return health<=0;
+    };
 
 	/* Getters */
-	Asteroid_GameObject_Type getObjectType(){return objectType;};
-	int getDamage(){return damage;};
+	Asteroid_GameObject_Type getObjectType()
+    {
+        return objectType;
+    };
+    
+	int getDamage()
+    {
+        return damage;
+    };
 };
 
 #endif /* GAMEOBJECT_H_ */

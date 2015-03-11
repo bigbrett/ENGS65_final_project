@@ -9,9 +9,6 @@
 #define WINDOW_WIDTH 480
 
 
-
-
-
 #define SHIP_startXLoc WINDOW_WIDTH/2
 #define SHIP_startYLoc WINDOW_HEIGHT/2
 #define SHIP_acceleration 2
