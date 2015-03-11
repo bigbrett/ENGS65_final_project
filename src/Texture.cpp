@@ -1,33 +1,60 @@
-#include "Texture.h"
-//The dot that will move around on the screen
-class Dot
+/*This source code copyrighted by Lazy Foo' Productions (2004-2015)
+ and may not be redistributed without written permission.*/
+
+//Using SDL, SDL_image, standard IO, and strings
+#include <SDL2/SDL.h>
+#include <SDL2_image.h>
+#include <stdio.h>
+#include <string>
+
+//Screen dimension constants
+const int SCREEN_WIDTH = 640;
+const int SCREEN_HEIGHT = 480;
+
+//Texture wrapper class
+class LTexture
 {
 public:
-    //The dimensions of the dot
-    static const int DOT_WIDTH = 20;
-    static const int DOT_HEIGHT = 20;
+    //Initializes variables
+    LTexture();
     
-    //Maximum axis velocity of the dot
-    static const int DOT_VEL = 10;
+    //Deallocates memory
+    ~LTexture();
     
-    //Initializes the variables
-    Dot();
+    //Loads image at specified path
+    bool loadFromFile( std::string path );
     
-    //Takes key presses and adjusts the dot's velocity
-    void handleEvent( SDL_Event& e );
+#ifdef _SDL_TTF_H
+    //Creates image from font string
+    bool loadFromRenderedText( std::string textureText, SDL_Color textColor );
+#endif
     
-    //Moves the dot
-    void move();
+    //Deallocates texture
+    void free();
     
-    //Shows the dot on the screen
-    void render();
+    //Set color modulation
+    void setColor( Uint8 red, Uint8 green, Uint8 blue );
+    
+    //Set blending
+    void setBlendMode( SDL_BlendMode blending );
+    
+    //Set alpha modulation
+    void setAlpha( Uint8 alpha );
+    
+    //Renders texture at given point
+    void render( int x, int y, SDL_Rect* clip = NULL, double angle = 0.0, SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE );
+    
+    //Gets image dimensions
+    int getWidth();
+    int getHeight();
     
 private:
-    //The X and Y offsets of the dot
-    int mPosX, mPosY;
+    //The actual hardware texture
+    SDL_Texture* mTexture;
     
-    //The velocity of the dot
-    int mVelX, mVelY;
+    //Image dimensions
+    int mWidth;
+    int mHeight;
 };
 
 //Starts up SDL and creates window
@@ -46,11 +73,11 @@ SDL_Window* gWindow = NULL;
 SDL_Renderer* gRenderer = NULL;
 
 //Scene textures
-LTexture gDotTexture;
-
-LTexture::LTexture()
-{
-    //Initialize
+LTexture gPressTexture;
+LTexture gUpTexture;
+LTexture gDownTexture;
+LTexture gLeftTexture;
+LTexture gRightTexteuxrteLTexture::LLTexturerutxeT  //Initialize
     mTexture = NULL;
     mWidth = 0;
     mHeight = 0;
@@ -196,75 +223,6 @@ int LTexture::getHeight()
     return mHeight;
 }
 
-
-Dot::Dot()
-{
-    //Initialize the offsets
-    mPosX = 0;
-    mPosY = 0;
-    
-    //Initialize the velocity
-    mVelX = 0;
-    mVelY = 0;
-}
-
-void Dot::handleEvent( SDL_Event& e )
-{
-    //If a key was pressed
-    if( e.type == SDL_KEYDOWN && e.key.repeat == 0 )
-    {
-        //Adjust the velocity
-        switch( e.key.keysym.sym )
-        {
-            case SDLK_UP: mVelY -= DOT_VEL; break;
-            case SDLK_DOWN: mVelY += DOT_VEL; break;
-            case SDLK_LEFT: mVelX -= DOT_VEL; break;
-            case SDLK_RIGHT: mVelX += DOT_VEL; break;
-        }
-    }
-    //If a key was released
-    else if( e.type == SDL_KEYUP && e.key.repeat == 0 )
-    {
-        //Adjust the velocity
-        switch( e.key.keysym.sym )
-        {
-            case SDLK_UP: mVelY += DOT_VEL; break;
-            case SDLK_DOWN: mVelY -= DOT_VEL; break;
-            case SDLK_LEFT: mVelX += DOT_VEL; break;
-            case SDLK_RIGHT: mVelX -= DOT_VEL; break;
-        }
-    }
-}
-
-void Dot::move()
-{
-    //Move the dot left or right
-    mPosX += mVelX;
-    
-    //If the dot went too far to the left or right
-    if( ( mPosX < 0 ) || ( mPosX + DOT_WIDTH > SCREEN_WIDTH ) )
-    {
-        //Move back
-        mPosX -= mVelX;
-    }
-    
-    //Move the dot up or down
-    mPosY += mVelY;
-    
-    //If the dot went too far up or down
-    if( ( mPosY < 0 ) || ( mPosY + DOT_HEIGHT > SCREEN_HEIGHT ) )
-    {
-        //Move back
-        mPosY -= mVelY;
-    }
-}
-
-void Dot::render()
-{
-    //Show the dot
-    gDotTexture.render( mPosX, mPosY );
-}
-
 bool init()
 {
     //Initialization flag
@@ -324,10 +282,38 @@ bool loadMedia()
     //Loading success flag
     bool success = true;
     
-    //Load dot texture
-    if( !gDotTexture.loadFromFile( "/Users/bretttt/Downloads/26_motion/dot.bmp" ) )
+    //Load press texture
+    if( !gPressTexture.loadFromFile( "18_key_states/press.png" ) )
     {
-        printf( "Failed to load dot texture!\n" );
+        printf( "Failed to load press texture!\n" );
+        success = false;
+    }
+    
+    //Load up texture
+    if( !gUpTexture.loadFromFile( "18_key_states/up.png" ) )
+    {
+        printf( "Failed to load up texture!\n" );
+        success = false;
+    }
+    
+    //Load down texture
+    if( !gDownTexture.loadFromFile( "18_key_states/down.png" ) )
+    {
+        printf( "Failed to load down texture!\n" );
+        success = false;
+    }
+    
+    //Load left texture
+    if( !gLeftTexture.loadFromFile( "18_key_states/left.png" ) )
+    {
+        printf( "Failed to load left texture!\n" );
+        success = false;
+    }
+    
+    //Load right texture
+    if( !gRightTexture.loadFromFile( "18_key_states/right.png" ) )
+    {
+        printf( "Failed to load right texture!\n" );
         success = false;
     }
     
@@ -337,7 +323,11 @@ bool loadMedia()
 void close()
 {
     //Free loaded images
-    gDotTexture.free();
+    gPressTexture.free();
+    gUpTexture.free();
+    gDownTexture.free();
+    gLeftTexture.free();
+    gRightTexture.free();
     
     //Destroy window
     SDL_DestroyRenderer( gRenderer );
@@ -365,15 +355,15 @@ int main( int argc, char* args[] )
             printf( "Failed to load media!\n" );
         }
         else
-        {	
+        {
             //Main loop flag
             bool quit = false;
             
             //Event handler
             SDL_Event e;
             
-            //The dot that will be moving around on the screen
-            Dot dot;
+            //Current rendered texture
+            LTexture* currentTexture = NULL;
             
             //While application is running
             while( !quit )
@@ -386,20 +376,37 @@ int main( int argc, char* args[] )
                     {
                         quit = true;
                     }
-                    
-                    //Handle input for the dot
-                    dot.handleEvent( e );
                 }
                 
-                //Move the dot
-                dot.move();
+                //Set texture based on current keystate
+                const Uint8* currentKeyStates = SDL_GetKeyboardState( NULL );
+                if( currentKeyStates[ SDL_SCANCODE_UP ] )
+                {
+                    currentTexture = &gUpTexture;
+                }
+                else if( currentKeyStates[ SDL_SCANCODE_DOWN ] )
+                {
+                    currentTexture = &gDownTexture;
+                }
+                else if( currentKeyStates[ SDL_SCANCODE_LEFT ] )
+                {
+                    currentTexture = &gLeftTexture;
+                }
+                else if( currentKeyStates[ SDL_SCANCODE_RIGHT ] )
+                {
+                    currentTexture = &gRightTexture;
+                }
+                else
+                {
+                    currentTexture = &gPressTexture;
+                }
                 
                 //Clear screen
                 SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
                 SDL_RenderClear( gRenderer );
                 
-                //Render objects
-                dot.render();
+                //Render current texture
+                currentTexture->render( 0, 0 );
                 
                 //Update screen
                 SDL_RenderPresent( gRenderer );

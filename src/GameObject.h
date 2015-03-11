@@ -17,8 +17,6 @@
 #include "AsteroidGlobals.h"
 #include <list>
 
-<<<<<<< HEAD
-=======
 #define OBJ_DEFAULT_LOCATION    Point(-1,-1)
 #define OBJ_DEFAULT_SIZE        -1
 #define OBJ_DEFAULT_ROTATION    AD_SIZE
@@ -26,7 +24,6 @@
 #define OBJ_DEFAULT_HEALTH      -1
 #define OBJ_DEFAULT_DAMAGE      0
 
->>>>>>> d4535a1ca60d9ac7e9ee7a9cf43b4e640f6132f2
 using namespace std;
 
 class GameObject
@@ -55,12 +52,16 @@ protected:
 
 public:
     /* Constructors and Destructor */ 
-    GameObject()
-    : objectType(AGT_GAMEOBJECT),startLocation(OBJ_DEFAULT_LOCATION),
-    location(OBJ_DEFAULT_LOCATION), edgeLength(OBJ_DEFAULT_SIZE),
-    rotation(OBJ_DEFAULT_ROTATION), speedX(OBJ_DEFAULT_SPEED),
-    speedY(OBJ_DEFAULT_SPEED), health(OBJ_DEFAULT_HEALTH),
-    damage(OBJ_DEFAULT_DAMAGE) {};
+    GameObject() :
+        objectType(AGT_GAMEOBJECT),
+        startLocation(OBJ_DEFAULT_LOCATION),
+        location(OBJ_DEFAULT_LOCATION),
+        edgeLength(OBJ_DEFAULT_SIZE),
+        rotation(OBJ_DEFAULT_ROTATION),
+        speedX(OBJ_DEFAULT_SPEED),
+        speedY(OBJ_DEFAULT_SPEED),
+        health(OBJ_DEFAULT_HEALTH),
+        damage(OBJ_DEFAULT_DAMAGE) {};
     
     GameObject(Asteroid_GameObject_Type type, Point startLoc, int edgeLength,
                Asteroid_Direction _rotation, int xSpeed, int ySpeed,
