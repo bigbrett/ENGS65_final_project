@@ -3,7 +3,8 @@
  *
  * GameObject class
  *
- * Is a parent class for the different types of objects used in the Asteroids game to inherit from.
+ * Is a parent class for the different types of objects used in the Asteroids 
+ * game to inherit from.
  *
  */
 
@@ -16,9 +17,14 @@
 #include "AsteroidGlobals.h"
 #include <list>
 
+#define OBJ_DEFAULT_LOCATION Point(-1,-1)
+#define OBJ_DEFAULT_SIZE -1
+#define OBJ_DEFAULT_ROTATION AD_SIZE
+#define OBJ_DEFAULT_SPEED -1
+#define OBJ_DEFAULT_HEALTH -1
+#define OBJ_DEFAULT_DAMAGE 0
+
 using namespace std;
-
-
 
 class GameObject
 {
@@ -34,22 +40,32 @@ protected:
     
     /* Variables are all protected, to allow children access */
 	Asteroid_GameObject_Type objectType;	// Set to the type of GameObject
-	Point startLocation;					// Location that the object starts at/resets to
-    Point location;							// Location of the center of the object
-	int edgeSize;							// Objects are squares of size edgeSize; must be an odd value!!
-	Asteroid_Direction rotation;			// Rotation of the object, AD_N = 0 degrees of rotation
-	int speedX;                             // Speed at which the object is currently moving, in +/- x
-    int speedY;                             // Speed at which the object is currently moving, in +/- y
-	int health;								// Objects health
-	int damage;								// Base damage the object does when colliding with another
+	Point startLocation;					// Starting location
+    Point location;							// Current location
+	int edgeLength;							// Objects are squares
+	Asteroid_Direction rotation;			// Rotation of the object,
+                                            // AD_N = 0 degrees of rotation
+	int speedX;                             // +/- x speed
+    int speedY;                             // +/- y speed
+	int health;								// Current health
+	int damage;								// Base damage the object does
 
 public:
-    GameObject():objectType(AGT_GAMEOBJECT), startLocation(-1,-1), location(-1,-1), edgeSize(-1), rotation(AD_SIZE),
-                speedX(0), speedY(0), health(0), damage(0) {};
-    GameObject(Asteroid_GameObject_Type type, Point startLoc, int edgeLength, Asteroid_Direction _rotation,
-               int xSpeed, int ySpeed, int _health, int _damage):objectType(type), startLocation(startLoc),
-                location(startLoc), edgeSize(edgeLength), rotation(_rotation), speedX(xSpeed), speedY(ySpeed),
-                health(_health), damage(_damage){};
+    /* Constructors and Destructor */ 
+    GameObject()
+    : objectType(AGT_GAMEOBJECT),startLocation(OBJ_DEFAULT_LOCATION),
+    location(OBJ_DEFAULT_LOCATION), edgeLength(OBJ_DEFAULT_SIZE),
+    rotation(OBJ_DEFAULT_ROTATION), speedX(OBJ_DEFAULT_SPEED),
+    speedY(OBJ_DEFAULT_SPEED), health(OBJ_DEFAULT_HEALTH),
+    damage(OBJ_DEFAULT_DAMAGE) {};
+    
+    GameObject(Asteroid_GameObject_Type type, Point startLoc, int edgeLength,
+               Asteroid_Direction _rotation, int xSpeed, int ySpeed,
+               int _health, int _damage)
+    : objectType(type), startLocation(startLoc), location(startLoc),
+    edgeLength(edgeLength), rotation(_rotation), speedX(xSpeed), speedY(ySpeed),
+    health(_health), damage(_damage) {};
+    
     virtual ~GameObject(){delete &startLocation; delete &location;};
 
 	// Make the object move

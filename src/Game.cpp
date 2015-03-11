@@ -18,7 +18,8 @@ Game::Game(): lives(DEFAULT_NUM_LIVES), score(0)
     }
 }
 
-Game::Game(int startingNumAsteroids, int startingLives, int startingScore) : lives(startingLives), score(startingScore)
+Game::Game(int startingNumAsteroids, int startingLives, int startingScore)
+:lives(startingLives), score(startingScore)
 {
     objectsInPlay.push_front(ship);
     for(int i = 0; i < startingNumAsteroids; i++)
@@ -48,12 +49,12 @@ bool Game::updateState()
     
     /* Collisions */
     list<GameObject*> damagedObjects;
-    // Iterate through objectsInPlay, checking for collisions with remaining unchecked objects
+    // Iterate through objectsInPlay, checking for collisions
     
         // If collision:
         // Add both to damagedObjects
-        // *** What if one has already been added from collision with prior object? ***
-        // *** Just iterate and confirm not already in damagedObjects before adding? ***
+// *** What if one has already been added from collision with prior object? ***
+// *** Just iterate and confirm not already in damagedObjects before adding? ***
         // call dmg() on both
     
     // Iterate through damagedObjects

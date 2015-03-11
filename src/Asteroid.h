@@ -22,7 +22,8 @@ class Asteroid: public GameObject
 	Asteroid_Size size;
 public:
 	Asteroid();
-	Asteroid(Asteroid_Size s); // Initialize a new Asteroid object with given Asteroid_Size
+	Asteroid(Asteroid_Size s);  // Initialize a new Asteroid object with given
+                                // Asteroid_Size
 	virtual ~Asteroid();
     
     /* Overloaded Functions */
