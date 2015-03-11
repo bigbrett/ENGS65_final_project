@@ -15,7 +15,7 @@
 #include <string>
 #include "AsteroidGlobals.h"
 
-//using namespace std;
+using namespace std;
 
 class GameObject
 {

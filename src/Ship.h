@@ -16,6 +16,7 @@
 
 class Ship: public GameObject
 {
+private:
 	static SDL_Surface *image;	// The image used for the class
 	int shield;					// Shield to reduce the damage taken by colliding with other objects
 
