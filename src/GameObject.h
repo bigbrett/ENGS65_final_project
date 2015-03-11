@@ -73,7 +73,8 @@ public:
     virtual ~GameObject(){delete &startLocation; delete &location;};
 
 	// Make the object move
-	virtual void move(){location.x = location.x + speedX; location.y = location.y + speedY;};
+	virtual void move(){location.x = location.x + speedX;
+        location.y = location.y + speedY;};
 
 	// Draw the object onto the game window surface
 	// Doesn't do anything in this class
