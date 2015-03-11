@@ -17,7 +17,8 @@
 
 //using namespace std;
 
-class GameObject {
+class GameObject
+{
 protected:	/* Variables are all protected, to allow children access */
 	Asteroid_GameObject_Type objectType;	// Set to the type of GameObject
 	Point location;							// Location of the center of the object

@@ -7,12 +7,14 @@
 
 #include "Bullet.h"
 
-Bullet::Bullet() {
+Bullet::Bullet()
+{
 	// TODO Auto-generated constructor stub
 
 }
 
-Bullet::~Bullet() {
+Bullet::~Bullet()
+{
 	// TODO Auto-generated destructor stub
 }
 

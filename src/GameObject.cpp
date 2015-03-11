@@ -7,12 +7,14 @@
 
 #include "GameObject.h"
 
-GameObject::GameObject() {
+GameObject::GameObject()
+{
 	// TODO Auto-generated constructor stub
 
 }
 
-GameObject::~GameObject() {
+GameObject::~GameObject()
+{
 	// TODO Auto-generated destructor stub
 }
 

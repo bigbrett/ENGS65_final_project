@@ -14,7 +14,8 @@
 #include "GameObject.h"
 #include "Bullet.h"
 
-class Ship: public GameObject {
+class Ship: public GameObject
+{
 	static SDL_Surface *image;	// The image used for the class
 	int shield;					// Shield to reduce the damage taken by colliding with other objects
 
@@ -29,6 +30,9 @@ public:
 	// Shoot function
 	// Returns a new Bullet object located at the front of the ship, traveling in the direction the ship is pointing
 	Bullet shoot();
+    
+    // Rotate 'increment' left (negative) or right (positive)
+    void rotate(int increment);
 
 };
 
