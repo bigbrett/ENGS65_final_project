@@ -13,8 +13,8 @@
 
 #include "GameObject.h"
 
-#define BULLET_DEFAULT_DAMAGE 1
-#define BULLET_DEFAULT_SPEED 1
+#define BULLET_DEFAULT_DAMAGE   1
+#define BULLET_DEFAULT_SPEED    1
 
 
 class Bullet: public GameObject
