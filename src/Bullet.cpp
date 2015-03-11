@@ -7,14 +7,9 @@
 
 #include "Bullet.h"
 
-Bullet::Bullet()
+Bullet::Bullet() : GameObject(<#args#>)
 {
 	// TODO Auto-generated constructor stub
 
-}
-
-Bullet::~Bullet()
-{
-	// TODO Auto-generated destructor stub
 }
 

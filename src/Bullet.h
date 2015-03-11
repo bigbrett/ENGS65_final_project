@@ -13,11 +13,16 @@
 
 #include "GameObject.h"
 
+#define BULLET_defaultDamage 1
+#define BULLET_defaultSpeed 1
+
+
 class Bullet: public GameObject
 {
 public:
 	Bullet();
-	virtual ~Bullet();
+    Bullet(Point startLoc, int xDirectionSpeed, int yDirectionSpeed, int _health, int _damage);
+    virtual ~Bullet() {}; // Nothing to destroy
     
     /* Overloaded functions */
     
