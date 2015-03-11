@@ -11,7 +11,6 @@
 #define ASTEROID_H_
 
 #include "GameObject.h"
-#include <list>
 
 #define ASTEROID_base_dmg 5
 
@@ -23,10 +22,13 @@ class Asteroid: public GameObject
 	Asteroid_Size size;
 public:
 	Asteroid();
-	Asteroid(Asteroid_Size s); // Initialize a new Asteroid object with given Asteroid_Size
+	Asteroid(Asteroid_Size s);  // Initialize a new Asteroid object with given
+                                // Asteroid_Size
 	virtual ~Asteroid();
     
-    std::list<Asteroid*> destroy();    // Destroy the asteroid return a list of new asteroids created from it
+    /* Overloaded Functions */
+    void takeDmg(int dmg, Asteroid_GameObject_Type type);
+    list<GameObject*> destroy();
 };
 
 #endif /* ASTEROID_H_ */

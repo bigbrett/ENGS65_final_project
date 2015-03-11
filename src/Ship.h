@@ -17,22 +17,27 @@
 class Ship: public GameObject
 {
 	static SDL_Surface *image;	// The image used for the class
-	int shield;					// Shield to reduce the damage taken by colliding with other objects
+	int shield;					// Damage reduction from collisions
 
 public:
 	Ship();
 	virtual ~Ship();
 
 	// Overloaded functions
-	void accelerate();
-	int takeDmg(int dmg){if(dmg > shield) health = health-dmg+shield; return health;};
+    void move();
+	void takeDmg(int dmg, Asteroid_GameObject_Type type);
+    list<GameObject*> destroy();
 
 	// Shoot function
-	// Returns a new Bullet object located at the front of the ship, traveling in the direction the ship is pointing
+	// Returns a new Bullet object located at the front of the ship,
+    // traveling in the direction the ship is pointing
 	Bullet shoot();
     
     // Rotate 'increment' left (negative) or right (positive)
     void rotate(int increment);
+    
+    // Accelerate
+    void accelerate();
 
 };
 
