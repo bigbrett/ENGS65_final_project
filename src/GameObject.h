@@ -17,12 +17,12 @@
 #include "AsteroidGlobals.h"
 #include <list>
 
-#define OBJ_DEFAULT_LOCATION Point(-1,-1)
-#define OBJ_DEFAULT_SIZE -1
-#define OBJ_DEFAULT_ROTATION AD_SIZE
-#define OBJ_DEFAULT_SPEED -1
-#define OBJ_DEFAULT_HEALTH -1
-#define OBJ_DEFAULT_DAMAGE 0
+#define OBJ_DEFAULT_LOCATION    Point(-1,-1)
+#define OBJ_DEFAULT_SIZE        -1
+#define OBJ_DEFAULT_ROTATION    AD_SIZE
+#define OBJ_DEFAULT_SPEED       -1
+#define OBJ_DEFAULT_HEALTH      -1
+#define OBJ_DEFAULT_DAMAGE      0
 
 using namespace std;
 
