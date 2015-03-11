@@ -17,8 +17,6 @@
 #include "AsteroidGlobals.h"
 #include <list>
 
-<<<<<<< HEAD
-=======
 #define OBJ_DEFAULT_LOCATION    Point(-1,-1)
 #define OBJ_DEFAULT_SIZE        -1
 #define OBJ_DEFAULT_ROTATION    AD_SIZE
@@ -26,7 +24,6 @@
 #define OBJ_DEFAULT_HEALTH      -1
 #define OBJ_DEFAULT_DAMAGE      0
 
->>>>>>> d4535a1ca60d9ac7e9ee7a9cf43b4e640f6132f2
 using namespace std;
 
 class GameObject
@@ -72,7 +69,8 @@ public:
     virtual ~GameObject(){delete &startLocation; delete &location;};
 
 	// Make the object move
-	virtual void move(){location.x = location.x + speedX; location.y = location.y + speedY;};
+	virtual void move(){location.x = location.x + speedX;
+        location.y = location.y + speedY;};
 
 	// Draw the object onto the game window surface
 	// Doesn't do anything in this class
