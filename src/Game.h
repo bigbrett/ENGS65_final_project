@@ -27,18 +27,19 @@ using namespace std;
 class Game
 {
 	list<GameObject*> objectsInPlay; 	// A SLL to hold all the GameObjects
-    Ship *ship;                             // So we can always directly access ship w/out searching
-	int lives;                              // Number of lives the player has remaining
-    int score;                              // Player current score
+    Ship *ship;                         // So we can always directly access ship
+	int lives;                          // Number of lives remaining
+    int score;                          // Player current score
 public:
     Game();  // Default constructor
     Game(int startingNumAsteroids, int startingLives, int startingScore);
 	virtual ~Game();
     
-    // Have the game update its state. Returns TRUE if game still running (FALSE when player runs out of lives)
+    // Have the game update its state. Returns TRUE if game still running
+    // (FALSE when player runs out of lives)
     bool updateState();
     
-    // Have the game draw itself onto the window. Returns TRUE on successful draw
+    // Have the game draw itself onto the window. Returns TRUE if successful
     bool drawGame(SDL_Surface *gameWindow);
 };
 
