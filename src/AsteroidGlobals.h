@@ -1,7 +1,7 @@
 /*
  * AsteroidGlobals.h
  *
- * Header file for global enumerated values to be used in the Asteroids game
+ * Header file for global values to be used in the Asteroids game
  *
  */
 
@@ -16,7 +16,8 @@ enum Asteroid_GameObject_Type {AGT_GAMEOBJECT, AGT_SHIP, AGT_BULLET, AGT_ASTEROI
 
 enum Asteroid_Direction {AD_N, AD_NE, AD_E, AD_SE, AD_S, AD_SW, AD_W, AD_NW};
 
-struct Point {
+struct Point
+{
 		int x;
 		int y;
 	};

@@ -7,12 +7,14 @@
 
 #include "Asteroid.h"
 
-Asteroid::Asteroid() {
+Asteroid::Asteroid()
+{
 	// TODO Auto-generated constructor stub
 
 }
 
-Asteroid::~Asteroid() {
+Asteroid::~Asteroid()
+{
 	// TODO Auto-generated destructor stub
 }
 

@@ -7,12 +7,14 @@
 
 #include "Ship.h"
 
-Ship::Ship() {
+Ship::Ship()
+{
 	// TODO Auto-generated constructor stub
 
 }
 
-Ship::~Ship() {
+Ship::~Ship()
+{
 	// TODO Auto-generated destructor stub
 }
 

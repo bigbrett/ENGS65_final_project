@@ -17,7 +17,8 @@
 
 //using namespace std;
 
-class GameObject {
+class GameObject
+{
 protected:	/* Variables are all protected, to allow children access */
 	Asteroid_GameObject_Type objectType;	// Set to the type of GameObject
 	Point location;							// Location of the center of the object
@@ -33,21 +34,21 @@ public:
 	virtual ~GameObject();
 
 	// Make the object move
-	void move(){location.x = location.x + speed.x; location.y = location.y + speed.y;};
+	virtual void move(){location.x = location.x + speed.x; location.y = location.y + speed.y;};
 
 	// Have the object accelerate
 	// Doesn't do anything in this class
-	void accelerate(){};
+	virtual void accelerate(){};
 
 	// Draw the object onto the game window surface
 	// Doesn't do anything in this class
-	void draw(SDL_Surface *gameWindow){};
+	virtual void draw(SDL_Surface *gameWindow){};
 
 	// Reset the object back to its starting location
 	void resetLocation(){location = startLocation;};
 
 	// Damage the object from a collision
-	int takeDmg(int dmg){health -= dmg; return health;};
+	virtual int takeDmg(int dmg, Asteroid_GameObject_Type type){health -= dmg; return health;};
 
 	/* Getters */
 	Asteroid_GameObject_Type getObjectType(){return objectType;};
