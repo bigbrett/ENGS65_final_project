@@ -24,8 +24,9 @@ public:
 	virtual ~Ship();
 
 	// Overloaded functions
-	void accelerate();
-	int takeDmg(int dmg){if(dmg > shield) health = health-dmg+shield; return health;};
+    void move();
+	void takeDmg(int dmg, Asteroid_GameObject_Type type);
+    list<GameObject*> destroy();
 
 	// Shoot function
 	// Returns a new Bullet object located at the front of the ship, traveling in the direction the ship is pointing
@@ -33,6 +34,9 @@ public:
     
     // Rotate 'increment' left (negative) or right (positive)
     void rotate(int increment);
+    
+    // Accelerate
+    void accelerate();
 
 };
 

@@ -14,8 +14,9 @@
 #include <cstdlib>
 #include <string>
 #include "AsteroidGlobals.h"
+#include <list>
 
-//using namespace std;
+using namespace std;
 
 class GameObject
 {
@@ -36,10 +37,6 @@ public:
 	// Make the object move
 	virtual void move(){location.x = location.x + speed.x; location.y = location.y + speed.y;};
 
-	// Have the object accelerate
-	// Doesn't do anything in this class
-	virtual void accelerate(){};
-
 	// Draw the object onto the game window surface
 	// Doesn't do anything in this class
 	virtual void draw(SDL_Surface *gameWindow){};
@@ -48,7 +45,13 @@ public:
 	void resetLocation(){location = startLocation;};
 
 	// Damage the object from a collision
-	virtual int takeDmg(int dmg, Asteroid_GameObject_Type type){health -= dmg; return health;};
+	virtual void takeDmg(int dmg, Asteroid_GameObject_Type type){health -= dmg;};
+    
+    // Destroy the object; returns a list of new objects that replace it
+    virtual list<GameObject*> destroy(){return list<GameObject*>();};
+    
+    // See if the object is destroyed
+    bool isDestroyed(){return health<=0;};
 
 	/* Getters */
 	Asteroid_GameObject_Type getObjectType(){return objectType;};

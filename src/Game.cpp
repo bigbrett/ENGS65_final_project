@@ -57,19 +57,10 @@ bool Game::updateState()
         // call dmg() on both
     
     // Iterate through damagedObjects
-        // Get object type
-        // For bullet:
-            // Delete object, remove from both lists
-        // For ship:
-            // If health zero
-                // Decrement lives
-                // Reset to starting location
-        // For asteroid:
-            // If health zero
-                // Increase score
-                // Delete object, remove from both vector sets
-                // Add returned list of new asteroids to objectsInPlay
-    
+        // call destroy()
+        // remove reference from damagedObjects && objectsInPlay
+        // add list of new objects to objectsInPlay
+        // delete object
     
     return lives > 0;
 }

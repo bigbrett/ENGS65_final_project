@@ -18,6 +18,9 @@ class Bullet: public GameObject
 public:
 	Bullet();
 	virtual ~Bullet();
+    
+    /* Overloaded functions */
+    
 };
 
 #endif /* BULLET_H_ */
