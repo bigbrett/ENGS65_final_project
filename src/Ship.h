@@ -29,7 +29,7 @@ private:
 public:
 	Ship();
     Ship(const Ship& other);
-    virtual ~Ship() : {}; // Nothing to destroy
+    virtual ~Ship() {}; // Nothing to destroy
 
 	/* Overloaded Functions */
 	void takeDmg(int dmg, Asteroid_GameObject_Type type);
@@ -43,7 +43,7 @@ public:
 	Bullet * shoot();
     
     // Handle a keyboard arrow press event
-    void handleKeyArrowPressEvent(SDLKey sym);
+    void handleKeyboardEvent(SDL_Event &e);
 };
 
 
