@@ -13,6 +13,7 @@
 #include <SDL2/SDL.h>
 #include <cstdlib>
 #include <list>
+#include <random>
 #include "GameObject.h"
 #include "Ship.h"
 #include "Asteroid.h"  

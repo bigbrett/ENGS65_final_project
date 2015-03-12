@@ -7,6 +7,7 @@
 
 #include "Asteroid.h"
 
+
 Asteroid::Asteroid(Asteroid_Size _size, SDL_Point location, int _x_velocity,
                    int _y_velocity)
         : GameObject(AGT_ASTEROID, location, _size * ASTEROID_BASE_SIZE,
