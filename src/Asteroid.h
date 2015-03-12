@@ -13,10 +13,9 @@
 #include "GameObject.h"
 
 #define ASTEROID_DEFAULT_SIZE   AS_LARGE
-#define ASTEROID_DEFAULT_SPEED  1
 #define ASTEROID_BASE_SIZE      1
 #define ASTEROID_BASE_HEALTH    1
-#define ASTEROID_BASE_DAMAGE    5
+#define ASTEROID_BASE_DAMAGE    2
 
 enum Asteroid_Size {AS_SMALL=1, AS_MED, AS_LARGE};
 
@@ -25,8 +24,9 @@ class Asteroid: public GameObject
 	Asteroid_Size size;
 public:
     Asteroid();
-    Asteroid(Asteroid_Size s, Point startLoc, int xDirectionSpeed,
-             int yDirectionSpeed);
+    Asteroid(Asteroid_Size s, SDL_Point location, int _x_velocity,
+             int _y_velocity);
+    Asteroid(const Asteroid& other);
     virtual ~Asteroid() {};     // Nothing to delete
     
     /* Overloaded Functions */
