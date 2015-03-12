@@ -47,15 +47,15 @@ void Ship::takeDmg(int dmg, Asteroid_GameObject_Type type)
     health -= dmg;
 }
 
-list<GameObject*> Ship::destroy()
+list<GameObject*> * Ship::destroy()
 {
-    Ship tempShip = *this;
-    list<GameObject*> tempList;
-    tempList.push_front((GameObject*) &tempShip);
+    Ship tempShip(*this);
+    list<GameObject*> *tempList = new list<GameObject* >();
+    tempList->push_front((GameObject*) &tempShip);
     return tempList;
 }
 
-Bullet Ship::shoot()
+Bullet * Ship::shoot()
 {
     int delX = collision_rect.w * cos(2/AD_SIZE*PI*rotation);
     int delY = collision_rect.h * sin(2/AD_SIZE*PI*rotation);
@@ -65,7 +65,7 @@ Bullet Ship::shoot()
     int x_vel = (x_velocity / x_velocity) * BULLET_DEFAULT_SPEED + x_velocity;
     int y_vel = (y_velocity / y_velocity) * BULLET_DEFAULT_SPEED + y_velocity;
     
-    Bullet newBullet = Bullet(loc, x_vel , y_vel, BULLET_DEFAULT_DAMAGE);
+    Bullet *newBullet = new Bullet(loc, x_vel , y_vel, BULLET_DEFAULT_DAMAGE);
     return newBullet;
 }
 

@@ -31,7 +31,7 @@ public:
     
     /* Overloaded Functions */
     void takeDmg(int dmg, Asteroid_GameObject_Type type);
-    list<GameObject*> destroy();
+    list<GameObject*> * destroy();
 };
 
 #endif /* ASTEROID_H_ */
