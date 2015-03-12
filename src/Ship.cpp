@@ -69,13 +69,14 @@ Bullet * Ship::shoot()
     return newBullet;
 }
 
-void Ship::handleKeyArrowPressEvent(int sym){
+void Ship::handleKeyArrowPressEvent(SDLKey sym){
     switch(sym)
     {
         case SDLK_UP: y_velocity -= DOT_VEL; break;
         case SDLK_DOWN: y_velocity += DOT_VEL; break;
         case SDLK_LEFT: x_velocity -= DOT_VEL; break;
         case SDLK_RIGHT: x_velocity += DOT_VEL; break;
+        default: break;
     }
 }
 

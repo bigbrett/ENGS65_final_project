@@ -34,17 +34,19 @@ Game::~Game()
 	// TODO Auto-generated destructor stub
 }
 
-bool Game::updateState()
+void Game::handleEvent(SDL_Event *e)
 {
-    /* User Input */
-    // Check for WASD/Arrow keys pressed for ship movement
-        // W/UpArrow -> call accelerate on ship
-        // A/LArrow -> ship.rotate(-)
-        // D/RArrow -> ship.rotate(+)
-        
+    // Check for Key Press
+    if(e->type == SDL_KEYDOWN){
+        if (e->key.keysym.sym == SDLK_SPACE) ship->shoot();
+        else ship->handleKeyArrowPressEvent(e->key.keysym.sym);
+    }
     
-    // Check for SpaceBar press for firing -> ship.fire()
-    
+   // Don't do anything for any other events
+}
+
+bool Game::updateState()
+{    
     /* Move() */
     
     /* Collisions */
@@ -52,16 +54,10 @@ bool Game::updateState()
     // Iterate through objectsInPlay, checking for collisions
     
         // If collision:
-        // Add both to damagedObjects
-// *** What if one has already been added from collision with prior object? ***
-// *** Just iterate and confirm not already in damagedObjects before adding? ***
-        // call dmg() on both
+            // call dmg() on both
+    // Iterate through objectsInPlay
+        // Remove any that returns false for isDestroyed()
     
-    // Iterate through damagedObjects
-        // call destroy()
-        // remove reference from damagedObjects && objectsInPlay
-        // add list of new objects to objectsInPlay
-        // delete object
     
     return lives > 0;
 }
