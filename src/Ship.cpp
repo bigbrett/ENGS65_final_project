@@ -69,8 +69,8 @@ void Ship::handleKeyArrowPressEvent(int sym){
     {
         case SDLK_UP: y_velocity -= DOT_VEL; break;
         case SDLK_DOWN: y_velocity += DOT_VEL; break;
-        case SDLK_LEFT: mVelX -= DOT_VEL; break;
-        case SDLK_RIGHT: mVelX += DOT_VEL; break;
+        case SDLK_LEFT: x_velocity -= DOT_VEL; break;
+        case SDLK_RIGHT: x_velocity += DOT_VEL; break;
     }
 }
 
