@@ -1,8 +1,6 @@
 /*
  * Game.h
  *
- * A class 
- *
  * Maintains a single game instance of Asteroids.
  *
  */
