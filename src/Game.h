@@ -30,7 +30,6 @@ class Game
 	int lives;                          // Number of lives remaining
     int score;                          // Player current score
 public:
-    Game();  // Default constructor
     Game(int startingNumAsteroids, int startingLives, int startingScore);
 	virtual ~Game();
     

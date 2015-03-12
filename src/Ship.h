@@ -14,7 +14,8 @@
 #include "GameObject.h"
 #include "Bullet.h"
 
-#define SHIP_DEFAULT_LOCATION   0
+#define SHIP_DEFAULT_X_LOCATION (GAME_WIDTH - SHIP_DEFAULT_SIZE) / 2
+#define SHIP_DEFAULT_Y_LOCATION (GAME_HEIGHT - SHIP_DEFAULT_SIZE) / 2
 #define SHIP_DEFAULT_SIZE       5
 #define SHIP_DEFAULT_HEALTH     5
 

@@ -23,7 +23,6 @@ class Asteroid: public GameObject
 {
 	Asteroid_Size size;
 public:
-    Asteroid();
     Asteroid(Asteroid_Size s, SDL_Point location, int _x_velocity,
              int _y_velocity);
     Asteroid(const Asteroid& other);

@@ -7,17 +7,6 @@
 
 #include "Game.h"
 
-
-Game::Game(): lives(DEFAULT_NUM_LIVES), score(0)
-{
-    objectsInPlay.push_front(ship);
-    for(int i = 0; i < DEFAULT_NUM_ASTEROIDS; i++)
-    {
-        Asteroid *temp = new Asteroid();
-        objectsInPlay.push_back(temp);
-    }
-}
-
 Game::Game(int startingNumAsteroids, int startingLives, int startingScore)
 :lives(startingLives), score(startingScore)
 {

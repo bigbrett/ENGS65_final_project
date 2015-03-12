@@ -25,7 +25,6 @@ class Bullet: public GameObject
     int distance_traveled;  // How far the bullet has gone. Bullet dies after
                             // traveling BULLET_MAX_DISTANCE
 public:
-	Bullet();
     Bullet(SDL_Point location, int _x_velocity, int _y_velocity, int _damage);
     Bullet(const Bullet& other);
     virtual ~Bullet() {};  // Nothing to destroy

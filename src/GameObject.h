@@ -69,30 +69,16 @@ protected:
     
     
 public:
-    /* Constructors and Destructor */ 
-    GameObject()
-    {
-        objectType = AGT_GAMEOBJECT;
-        collision_rect.x = OBJ_DEFAULT_LOCATION;
-        collision_rect.y = OBJ_DEFAULT_LOCATION;
-        collision_rect.h = OBJ_DEFAULT_SIZE;
-        collision_rect.w = OBJ_DEFAULT_SIZE;
-        rotation = OBJ_DEFAULT_ROTATION;
-        x_velocity = OBJ_DEFAULT_SPEED;
-        y_velocity = OBJ_DEFAULT_SPEED;
-        health = OBJ_DEFAULT_HEALTH;
-        damage = OBJ_DEFAULT_DAMAGE;
-    };
-    
-    GameObject(Asteroid_GameObject_Type type, SDL_Point location,
-               Asteroid_Direction _rotation, int _x_velocity, int _y_velocity,
-               int _health, int _damage)
+    /* Constructors and Destructor */
+    GameObject(Asteroid_GameObject_Type type, SDL_Point location, int height,
+               int width, Asteroid_Direction _rotation, int _x_velocity,
+               int _y_velocity, int _health, int _damage)
     {
         objectType = type;
-        collision_rect.x = OBJ_DEFAULT_LOCATION;
-        collision_rect.y = OBJ_DEFAULT_LOCATION;
-        collision_rect.h = OBJ_DEFAULT_SIZE;
-        collision_rect.w = OBJ_DEFAULT_SIZE;
+        collision_rect.x = location.x;
+        collision_rect.y = location.y;
+        collision_rect.h = height;
+        collision_rect.w = width;
         rotation = _rotation;
         x_velocity = _x_velocity;
         y_velocity = _y_velocity;
