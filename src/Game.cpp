@@ -7,61 +7,61 @@
 
 #include "Game.h"
 
-
-Game::Game(): lives(DEFAULT_NUM_LIVES), score(0)
-{
-    objectsInPlay.push_front(ship);
-    for(int i = 0; i < DEFAULT_NUM_ASTEROIDS; i++)
-    {
-        Asteroid *temp = new Asteroid();
-        objectsInPlay.push_back(temp);
-    }
-}
-
 Game::Game(int startingNumAsteroids, int startingLives, int startingScore)
 :lives(startingLives), score(startingScore)
 {
+    // Create random number generator for placing asteroids on the field
+    default_random_engine generator;
+    uniform_int_distribution<int> y_gen (0, GAME_HEIGHT);
+    uniform_int_distribution<int> x_gen (0, GAME_WIDTH);
+    uniform_int_distribution<int> v_gen (0, ASTEROID_MAX_SPEED);
+    
+    // Put the ship into the list
     objectsInPlay.push_front(ship);
+    
+    // Add the asteroids in
     for(int i = 0; i < startingNumAsteroids; i++)
     {
-        Asteroid *temp = new Asteroid();
+        SDL_Point p;
+        p.x = x_gen(generator);
+        p.y = y_gen(generator);
+        Asteroid *temp = new Asteroid(ASTEROID_DEFAULT_SIZE, p,
+                                      v_gen(generator)/ASTEROID_DEFAULT_SIZE,
+                                      v_gen(generator)/ASTEROID_DEFAULT_SIZE);
         objectsInPlay.push_back(temp);
     }
 };
 
 Game::~Game()
 {
-	// TODO Auto-generated destructor stub
+	// TODO
+
+}
+
+void Game::handleEvent(SDL_Event *e)
+{
+    // Check for Key Press
+    if(e->type == SDL_KEYDOWN){
+        if (e->key.keysym.sym == SDLK_SPACE) ship->shoot();
+        else ship->handleKeyArrowPressEvent(e->key.keysym.sym);
+    }
+    
+   // Don't do anything for any other events
 }
 
 bool Game::updateState()
-{
-    /* User Input */
-    // Check for WASD/Arrow keys pressed for ship movement
-        // W/UpArrow -> call accelerate on ship
-        // A/LArrow -> ship.rotate(-)
-        // D/RArrow -> ship.rotate(+)
-        
-    
-    // Check for SpaceBar press for firing -> ship.fire()
-    
+{    
     /* Move() */
     
     /* Collisions */
-    list<GameObject*> damagedObjects;
     // Iterate through objectsInPlay, checking for collisions
-    
         // If collision:
-        // Add both to damagedObjects
-// *** What if one has already been added from collision with prior object? ***
-// *** Just iterate and confirm not already in damagedObjects before adding? ***
-        // call dmg() on both
+            // call dmg() on both
     
-    // Iterate through damagedObjects
-        // call destroy()
-        // remove reference from damagedObjects && objectsInPlay
-        // add list of new objects to objectsInPlay
-        // delete object
+    /* Update list */
+    // Iterate through objectsInPlay
+        // Remove any that returns false for isDestroyed()
+    
     
     return lives > 0;
 }

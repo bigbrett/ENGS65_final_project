@@ -11,11 +11,52 @@
 #ifndef SHIP_H_
 #define SHIP_H_
 
+<<<<<<< HEAD
 #include <SDL2/SDL.h> 
 #include <SDL2_image/SDL_image.h> 
 #include <stdio.h>
 #include "Texture.h"
 
+=======
+#include "GameObject.h"
+#include "Bullet.h"
+
+#define SHIP_DEFAULT_X_LOCATION (GAME_WIDTH - SHIP_DEFAULT_SIZE) / 2
+#define SHIP_DEFAULT_Y_LOCATION (GAME_HEIGHT - SHIP_DEFAULT_SIZE) / 2
+#define SHIP_DEFAULT_SIZE       5
+#define SHIP_DEFAULT_HEALTH     5
+
+#define DOT_VEL 10      // FOR INTIAL SHIP EVENT HANDLING TESTING PURPOSES
+
+class Ship: public GameObject
+{
+private:
+	int shield;					// Damage reduction from collisions
+
+public:
+	Ship();
+    Ship(const Ship& other);
+    virtual ~Ship() : {}; // Nothing to destroy
+
+	/* Overloaded Functions */
+	void takeDmg(int dmg, Asteroid_GameObject_Type type);
+    list<GameObject*> * destroy();
+    
+    /* Ship Specific Functions */
+
+	// Shoot function
+	// Returns a new Bullet object located at the front of the ship,
+    // traveling in the direction the ship is pointing
+	Bullet * shoot();
+    
+    // Handle a keyboard arrow press event
+    void handleKeyArrowPressEvent(SDLKey sym);
+};
+
+
+
+/*
+>>>>>>> e6ec3677b8151c8439354755603b737ad5ec83cd
 //The dot that will move around on the screen
 class Dot
 {
@@ -46,6 +87,6 @@ private:
     //The velocity of the dot
     int mVelX, mVelY;
 };
-
+*/
 
 #endif /* SHIP_H_ */
