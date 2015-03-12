@@ -17,7 +17,9 @@
 #define ASTEROID_BASE_SIZE      1
 #define ASTEROID_BASE_HEALTH    1
 #define ASTEROID_BASE_DAMAGE    2
-#define ASTEROID_MAX_SPEED      9   // To scale speed based on size: speed/size
+#define ASTEROID_MAX_SPEED      11   // To scale speed based on size: speed/size
+                                    // Allows for speeds 0-3 for large, 0-5 for
+                                    // medium and 0-11 for small
 
 enum Asteroid_Size {AS_SMALL=1, AS_MED, AS_LARGE};
 

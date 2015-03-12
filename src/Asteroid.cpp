@@ -47,23 +47,23 @@ list<GameObject*> * Asteroid::destroy()
     
     p.x = collision_rect.x;
     p.y = collision_rect.y + offset;
-    Asteroid *a1 = new Asteroid(newSize, p, x_velocity * newSize/size,
-                                y_velocity * newSize/size + 1);
+    Asteroid *a1 = new Asteroid(newSize, p, x_velocity * size/newSize,
+                                y_velocity * size/newSize + 1);
     
     p.x = collision_rect.x;
     p.y = collision_rect.y - offset;
-    Asteroid *a2 = new Asteroid(newSize, p, x_velocity * newSize/size,
-                                y_velocity *newSize/size - 1);
+    Asteroid *a2 = new Asteroid(newSize, p, x_velocity * size/newSize,
+                                y_velocity * size/newSize - 1);
     
     p.x = collision_rect.x;
     p.y = collision_rect.y - offset;
-    Asteroid *a3 = new Asteroid(newSize, p, x_velocity * newSize/size + 1,
-                                y_velocity * newSize/size);
+    Asteroid *a3 = new Asteroid(newSize, p, x_velocity * size/newSize + 1,
+                                y_velocity * size/newSize);
     
     p.x = collision_rect.x;
     p.y = collision_rect.y - offset;
-    Asteroid *a4 = new Asteroid(newSize, p, x_velocity * newSize/size - 1,
-                                y_velocity * newSize/size);
+    Asteroid *a4 = new Asteroid(newSize, p, x_velocity * size/newSize - 1,
+                                y_velocity * size/newSize);
     
     temp->push_front((GameObject*) a1);
     temp->push_front((GameObject*) a2);
