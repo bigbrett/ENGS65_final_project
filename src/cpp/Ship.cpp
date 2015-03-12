@@ -149,6 +149,6 @@ void Dot::move()
 void Dot::render()
 {
     //Show the dot
-    gDotTexture.render( mPosX, mPosY );
+ //   gDotTexture.render( mPosX, mPosY );
 }
 */

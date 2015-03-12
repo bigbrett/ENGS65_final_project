@@ -16,7 +16,6 @@
 #include <string>
 #include <list>
 #include <cmath>
-#include "Texture.h"
 #include "Globals.h"
 
 using namespace std;
@@ -40,7 +39,7 @@ protected:
     SDL_Renderer* gRenderer = NULL;
     
     //Scene textures
-    LTexture gTexture;
+  //  LTexture gTexture;
     
     // Check for moving offscreen
     void movedOffScreen();
