@@ -7,6 +7,11 @@
 
 #include "Game.h"
 
+
+
+
+
+
 Game::Game(int startingNumAsteroids, int startingLives, int startingScore)
 :lives(startingLives), score(startingScore)
 {

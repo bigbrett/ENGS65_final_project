@@ -10,8 +10,7 @@
 #define __Asteroids__Window__
 
 #include <SDL2/SDL.h>
-#include "AsteroidGlobals.h"
-
+#include "Globals.h"
 class Window
 {
 private:
