@@ -15,8 +15,10 @@
 #include <cstdlib>
 #include <string>
 #include <list>
+#include <cmath>
 #include "Texture.h"
 
+#define PI 3.14159
 
 #define OBJ_DEFAULT_LOCATION    -1
 #define OBJ_DEFAULT_SIZE        -1

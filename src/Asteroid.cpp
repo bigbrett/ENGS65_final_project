@@ -9,7 +9,10 @@
 
 Asteroid::Asteroid()
 {
+    // Class Specific Variables
     size = ASTEROID_DEFAULT_SIZE;
+    
+    // Parent Variables
     objectType = AGT_ASTEROID;
     collision_rect.x = OBJ_DEFAULT_LOCATION;
     collision_rect.y = OBJ_DEFAULT_LOCATION;
@@ -25,7 +28,10 @@ Asteroid::Asteroid()
 Asteroid::Asteroid(Asteroid_Size _size, SDL_Point location, int _x_velocity,
                    int _y_velocity)
 {
+    // Class Specific Variables
     size = _size;
+    
+    // Parent Variables
     objectType = AGT_ASTEROID;
     collision_rect.x = location.x;
     collision_rect.y = location.y;

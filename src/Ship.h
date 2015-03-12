@@ -13,7 +13,12 @@
 
 #include "GameObject.h"
 #include "Bullet.h"
-#include <cmath>
+
+#define SHIP_DEFAULT_LOCATION   0
+#define SHIP_DEFAULT_SIZE       5
+#define SHIP_DEFAULT_HEALTH     5
+
+#define DOT_VEL 10      // FOR INTIAL SHIP EVENT HANDLING TESTING PURPOSES
 
 class Ship: public GameObject
 {
@@ -42,7 +47,7 @@ public:
 
 
 
-
+/*
 //The dot that will move around on the screen
 class Dot
 {
@@ -73,6 +78,6 @@ private:
     //The velocity of the dot
     int mVelX, mVelY;
 };
-
+*/
 
 #endif /* SHIP_H_ */

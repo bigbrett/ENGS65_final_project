@@ -15,7 +15,7 @@
 #define ASTEROID_DEFAULT_SIZE   AS_LARGE
 #define ASTEROID_BASE_SIZE      1
 #define ASTEROID_BASE_HEALTH    1
-#define ASTEROID_BASE_DAMAGE    5
+#define ASTEROID_BASE_DAMAGE    2
 
 enum Asteroid_Size {AS_SMALL=1, AS_MED, AS_LARGE};
 

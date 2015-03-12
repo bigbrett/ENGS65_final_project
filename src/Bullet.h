@@ -15,17 +15,21 @@
 
 #define BULLET_DEFAULT_DAMAGE   1
 #define BULLET_DEFAULT_SIZE     1
+#define BULLET_DEFAULT_HEALTH   1
+#define BULLET_DEFAULT_SPEED    3
+#define BULLET_MAX_DISTANCE     100
 
 
 class Bullet: public GameObject
 {
+    int distance_traveled;
 public:
 	Bullet();
     Bullet(SDL_Point location, int _x_velocity, int _y_velocity, int _damage);
     virtual ~Bullet() {}; // Nothing to destroy
     
     /* Overloaded functions */
-    // None
+    void move();
 };
 
 #endif /* BULLET_H_ */
