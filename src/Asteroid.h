@@ -26,6 +26,7 @@ public:
     Asteroid();
     Asteroid(Asteroid_Size s, SDL_Point location, int _x_velocity,
              int _y_velocity);
+    Asteroid(const Asteroid& other);
     virtual ~Asteroid() {};     // Nothing to delete
     
     /* Overloaded Functions */

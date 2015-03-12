@@ -26,6 +26,7 @@ class Bullet: public GameObject
 public:
 	Bullet();
     Bullet(SDL_Point location, int _x_velocity, int _y_velocity, int _damage);
+    Bullet(const Bullet& other);
     virtual ~Bullet() {}; // Nothing to destroy
     
     /* Overloaded functions */

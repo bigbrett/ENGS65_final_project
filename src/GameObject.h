@@ -94,6 +94,19 @@ public:
         damage = _damage;
     };
     
+    virtual GameObject(const GameObject& other) {
+        objectType = other.objectType;
+        collision_rect.x = other.collision_rect.x;
+        collision_rect.y = other.collision_rect.y;
+        collision_rect.h = other.collision_rect.h;
+        collision_rect.w = other.collision_rect.w;
+        rotation = other.rotation;
+        x_velocity = other.x_velocity;
+        y_velocity  = other.y_velocity;
+        health = other.health;
+        damage = other.damage;
+    }
+    
     virtual ~GameObject(){delete &location;};
     
     /* Overloadable Operations */

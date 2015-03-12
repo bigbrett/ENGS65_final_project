@@ -27,7 +27,8 @@ private:
 
 public:
 	Ship();
-	virtual ~Ship();
+    Ship(const Ship& other);
+    virtual ~Ship() : {}; // Nothing to destroy
 
 	/* Overloaded Functions */
     void move();

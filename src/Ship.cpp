@@ -25,6 +25,11 @@ Ship::Ship()
     damage = OBJ_DEFAULT_DAMAGE;
 }
 
+Ship::Ship(const Ship& other) : GameObject(other)
+{
+    shield = other.shield;
+}
+
 void Ship::move()
 {
     /* TODO */

@@ -44,6 +44,11 @@ Asteroid::Asteroid(Asteroid_Size _size, SDL_Point location, int _x_velocity,
     damage = size * ASTEROID_BASE_DAMAGE;
 }
 
+Asteroid::Asteroid(const Asteroid& other) : GameObject(other)
+{
+    size = other.size;
+}
+
 void Asteroid::takeDmg(int dmg, Asteroid_GameObject_Type type)
 {
     if(type == AGT_SHIP) health = 0;    // Make sure the ship kills the asteroid
