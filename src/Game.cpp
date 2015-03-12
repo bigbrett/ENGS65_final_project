@@ -34,7 +34,8 @@ Game::Game(int startingNumAsteroids, int startingLives, int startingScore)
 
 Game::~Game()
 {
-	// TODO Auto-generated destructor stub
+	// TODO
+
 }
 
 void Game::handleEvent(SDL_Event *e)
