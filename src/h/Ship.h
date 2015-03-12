@@ -11,6 +11,13 @@
 #ifndef SHIP_H_
 #define SHIP_H_
 
+<<<<<<< HEAD
+#include <SDL2/SDL.h> 
+#include <SDL2_image/SDL_image.h> 
+#include <stdio.h>
+#include "Texture.h"
+
+=======
 #include "GameObject.h"
 #include "Bullet.h"
 
@@ -49,6 +56,7 @@ public:
 
 
 /*
+>>>>>>> e6ec3677b8151c8439354755603b737ad5ec83cd
 //The dot that will move around on the screen
 class Dot
 {
