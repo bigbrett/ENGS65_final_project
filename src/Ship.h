@@ -13,33 +13,31 @@
 
 #include "GameObject.h"
 #include "Bullet.h"
+#include <cmath>
 
 class Ship: public GameObject
 {
 private:
-	static SDL_Surface *image;	// The image used for the class
 	int shield;					// Damage reduction from collisions
 
 public:
 	Ship();
 	virtual ~Ship();
 
-	// Overloaded functions
+	/* Overloaded Functions */
     void move();
 	void takeDmg(int dmg, Asteroid_GameObject_Type type);
     list<GameObject*> destroy();
+    
+    /* Ship Specific Functions */
 
 	// Shoot function
 	// Returns a new Bullet object located at the front of the ship,
     // traveling in the direction the ship is pointing
 	Bullet shoot();
     
-    // Rotate 'increment' left (negative) or right (positive)
-    void rotate(int increment);
-    
-    // Accelerate
-    void accelerate();
-
+    // Handle a keyboard arrow press event
+    void handleKeyArrowPressEvent(SDLKey sym);
 };
 
 
