@@ -58,7 +58,7 @@ public:
     bool drawGame(SDL_Renderer *renderer);
     
     // Handle SDL Events
-    void handleEvent(SDL_Event *e);
+    void handleEvent(SDL_Event &e);
 };
 
 #endif /* GAME_H_ */
