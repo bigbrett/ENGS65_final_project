@@ -33,14 +33,14 @@ public:
 	/* Overloaded Functions */
     void move();
 	void takeDmg(int dmg, Asteroid_GameObject_Type type);
-    list<GameObject*> destroy();
+    list<GameObject*> * destroy();
     
     /* Ship Specific Functions */
 
 	// Shoot function
 	// Returns a new Bullet object located at the front of the ship,
     // traveling in the direction the ship is pointing
-	Bullet shoot();
+	Bullet * shoot();
     
     // Handle a keyboard arrow press event
     void handleKeyArrowPressEvent(SDLKey sym);

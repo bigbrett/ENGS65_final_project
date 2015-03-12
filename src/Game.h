@@ -25,7 +25,7 @@ using namespace std;
 
 class Game
 {
-	list<GameObject*> objectsInPlay; 	// A SLL to hold all the GameObjects
+	list<GameObject*> objectsInPlay; 	// A DLL to hold all the GameObjects
     Ship *ship;                         // So we can always directly access ship
 	int lives;                          // Number of lives remaining
     int score;                          // Player current score
@@ -39,7 +39,10 @@ public:
     bool updateState();
     
     // Have the game draw itself onto the window. Returns TRUE if successful
-    bool drawGame(SDL_Surface *gameWindow);
+    bool drawGame(SDL_Renderer *renderer);
+    
+    // Handle SDL Events
+    void handleEvent(SDL_Event *e);
 };
 
 #endif /* GAME_H_ */

@@ -129,9 +129,10 @@ public:
     };
     
     // Destroy the object; returns a list of new objects that replace it
-    virtual list<GameObject*> destroy()
+    virtual list<GameObject*> * destroy()
     {
-        return list<GameObject*>();
+        list<GameObject*> *temp = new list<GameObject*>();
+        return new list<GameObject*>();
     };
     
     /* Standard functions */
