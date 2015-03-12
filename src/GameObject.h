@@ -18,6 +18,9 @@
 #include <cmath>
 #include "Texture.h"
 
+#define GAME_WIDTH  640
+#define GAME_HEIGHT 480
+
 #define PI 3.14159
 
 #define OBJ_DEFAULT_LOCATION    -1
@@ -60,6 +63,9 @@ protected:
     
     //Scene textures
     Texture gTexture;
+    
+    // Check for moving offscreen
+    void movedOffScreen();
     
     
 public:
@@ -116,6 +122,7 @@ public:
     {
         collision_rect.x += x_velocity;
         collision_rect.y += y_velocity;
+        movedOffScreen();
     };
 
 	// Draw the object onto the game window surface
@@ -154,5 +161,32 @@ public:
         return damage;
     };
 };
+
+void GameObject::GameObject movedOffScreen()
+{
+    // Check against having moved off left
+    if(collision_rect.x + collision_rect.w < 0)
+    {
+        collision_rect.x = collision_rect.x + GAME_WIDTH;
+    }
+    
+    // Check against having moved off right
+    if (collision_rect.x > GAME_WIDTH)
+    {
+        collision_rect.x = GAME_WIDTH - collision_rect.x;
+    }
+    
+    // Check against having moved off top
+    if (collision_rect.y + collision_rect.h < 0)
+    {
+        collision_rect.y = collision_rect.y + GAME_HEIGHT;
+    }
+    
+    // Check against having moved off bottom
+    if (collision_rect.y > GAME_HEIGHT)
+    {
+        collision_rect.y = GAME_HEIGHT - collision_rect.y;
+    }
+}
 
 #endif /* GAMEOBJECT_H_ */

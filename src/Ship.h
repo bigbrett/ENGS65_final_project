@@ -31,7 +31,6 @@ public:
     virtual ~Ship() : {}; // Nothing to destroy
 
 	/* Overloaded Functions */
-    void move();
 	void takeDmg(int dmg, Asteroid_GameObject_Type type);
     list<GameObject*> * destroy();
     

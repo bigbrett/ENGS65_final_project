@@ -30,11 +30,6 @@ Ship::Ship(const Ship& other) : GameObject(other)
     shield = other.shield;
 }
 
-void Ship::move()
-{
-    /* TODO */
-}
-
 void Ship::takeDmg(int dmg, Asteroid_GameObject_Type type)
 {
     if (type == AGT_ASTEROID) {

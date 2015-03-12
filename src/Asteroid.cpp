@@ -52,6 +52,7 @@ Asteroid::Asteroid(const Asteroid& other) : GameObject(other)
 void Asteroid::takeDmg(int dmg, Asteroid_GameObject_Type type)
 {
     if(type == AGT_SHIP) health = 0;    // Make sure the ship kills the asteroid
+    else if(type == AGT_ASTEROID)   {} // Do nothing if asteroids collide
     else health -= dmg;
 }
 
