@@ -11,10 +11,9 @@
 #ifndef SHIP_H_
 #define SHIP_H_
 
-#include <SDL2/SDL.h> 
-#include <SDL2_image/SDL_image.h> 
+#include <SDL2/SDL.h>
+#include <SDL2_image/SDL_image.h>
 #include <stdio.h>
-#include "Texture.h"
 
 #include "GameObject.h"
 #include "Bullet.h"
@@ -34,7 +33,7 @@ private:
 public:
 	Ship();
     Ship(const Ship& other);
-    virtual ~Ship() {}; // Nothing to destroy
+    virtual ~Ship() {} // Nothing to destroy
 
 	/* Overloaded Functions */
 	void takeDmg(int dmg, Asteroid_GameObject_Type type);
@@ -54,7 +53,10 @@ public:
 
 
 /*
+<<<<<<< HEAD
+=======
 
+>>>>>>> ebd48a8760013fe5207eaa2f90a0f45408f6a5c8
 //The dot that will move around on the screen
 class Dot
 {

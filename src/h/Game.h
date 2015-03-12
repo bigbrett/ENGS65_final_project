@@ -1,8 +1,6 @@
 /*
  * Game.h
  *
- * Game class
- *
  * Maintains a single game instance of Asteroids.
  *
  */
@@ -10,14 +8,24 @@
 #ifndef GAME_H_
 #define GAME_H_
 
-#include <SDL2/SDL.h>
+#include <iostream>
+#include <string>
+#include <sstream>
+#include <map>
 #include <cstdlib>
+#include <ctime>
 #include <list>
 #include <random>
+
+//#include <SDL2/SDL.h>
 #include "GameObject.h"
 #include "Ship.h"
 #include "Asteroid.h"  
 #include "Bullet.h"
+#include "SDLDriver.h"
+#include "Renderer.h"
+#include "Window.h"
+#include "Globals.h"
 
 #define DEFAULT_NUM_ASTEROIDS 10
 #define DEFAULT_NUM_LIVES 3
@@ -26,6 +34,12 @@ using namespace std;
 
 class Game
 {
+private:
+    SDLDriver graphicsDriver; //wrapper class for SDL applet
+    Window window; // wrapper class for SDL window object
+    Renderer* renderer; // wrapper class for SDL graphics renderer object
+    SDL_Event eventQ; // SDL event queue
+    
 	list<GameObject*> objectsInPlay; 	// A DLL to hold all the GameObjects
     Ship *ship;                         // So we can always directly access ship
 	int lives;                          // Number of lives remaining
