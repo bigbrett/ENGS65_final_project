@@ -62,7 +62,7 @@ protected:
     SDL_Renderer* gRenderer = NULL;
     
     //Scene textures
-    Texture gTexture;
+    LTexture gTexture;
     
     // Check for moving offscreen
     void movedOffScreen();
@@ -86,7 +86,7 @@ public:
         damage = _damage;
     };
     
-    virtual GameObject(const GameObject& other) {
+    GameObject(const GameObject& other) {
         objectType = other.objectType;
         collision_rect.x = other.collision_rect.x;
         collision_rect.y = other.collision_rect.y;
@@ -99,7 +99,7 @@ public:
         damage = other.damage;
     }
     
-    virtual ~GameObject(){delete &location;};
+    virtual ~GameObject(){};
     
     /* Overloadable Operations */
     
@@ -125,7 +125,7 @@ public:
     virtual list<GameObject*> * destroy()
     {
         list<GameObject*> *temp = new list<GameObject*>();
-        return new list<GameObject*>();
+        return temp;
     };
     
     /* Standard functions */
@@ -148,7 +148,7 @@ public:
     };
 };
 
-void GameObject::GameObject movedOffScreen()
+void GameObject::movedOffScreen()
 {
     // Check against having moved off left
     if(collision_rect.x + collision_rect.w < 0)

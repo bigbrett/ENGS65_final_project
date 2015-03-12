@@ -38,12 +38,11 @@ Game::~Game()
 
 }
 
-void Game::handleEvent(SDL_Event *e)
+void Game::handleEvent(SDL_Event &e)
 {
     // Check for Key Press
-    if(e->type == SDL_KEYDOWN){
-        if (e->key.keysym.sym == SDLK_SPACE) ship->shoot();
-        else ship->handleKeyArrowPressEvent(e->key.keysym.sym);
+    if(e.type == SDL_KEYDOWN || e.type == SDL_KEYUP){
+        ship->handleKeyboardEvent(e);
     }
     
    // Don't do anything for any other events

@@ -8,10 +8,13 @@
 #include "Ship.h"
 
 Ship::Ship()
-    : GameObject(AGT_SHIP, SHIP_DEFAULT_X_LOCATION, SHIP_DEFAULT_Y_LOCATION,
+    : GameObject(AGT_SHIP, SDL_Point (),
                  SHIP_DEFAULT_SIZE, SHIP_DEFAULT_SIZE, OBJ_DEFAULT_ROTATION,
                  0, 0, SHIP_DEFAULT_HEALTH, 0)
 {
+    collision_rect.x = SHIP_DEFAULT_X_LOCATION;
+    collision_rect.y = SHIP_DEFAULT_Y_LOCATION;
+    
     // Class Specific Variables
     shield = 0;
 }
@@ -55,14 +58,28 @@ Bullet * Ship::shoot()
     return newBullet;
 }
 
-void Ship::handleKeyArrowPressEvent(SDLKey sym){
-    switch(sym)
+void Ship::handleKeyboardEvent(SDL_Event &e){
+    if(e.type == SDL_KEYDOWN && e.key.repeat == 0)
     {
-        case SDLK_UP: y_velocity -= DOT_VEL; break;
-        case SDLK_DOWN: y_velocity += DOT_VEL; break;
-        case SDLK_LEFT: x_velocity -= DOT_VEL; break;
-        case SDLK_RIGHT: x_velocity += DOT_VEL; break;
-        default: break;
+        switch(e.key.keysym.sym)
+        {
+            case SDLK_UP: y_velocity -= DOT_VEL; break;
+            case SDLK_DOWN: y_velocity += DOT_VEL; break;
+            case SDLK_LEFT: x_velocity -= DOT_VEL; break;
+            case SDLK_RIGHT: x_velocity += DOT_VEL; break;
+            default: break;
+        }
+    }
+    else if(e.type == SDL_KEYUP && e.key.repeat == 0)
+    {
+        switch(e.key.keysym.sym)
+        {
+            case SDLK_UP: y_velocity = 0; break;
+            case SDLK_DOWN: y_velocity = 0; break;
+            case SDLK_LEFT: x_velocity = 0; break;
+            case SDLK_RIGHT: x_velocity = 0; break;
+            default: break;
+        }
     }
 }
 
