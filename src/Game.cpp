@@ -14,6 +14,7 @@ Game::Game(int startingNumAsteroids, int startingLives, int startingScore)
     default_random_engine generator;
     uniform_int_distribution<int> y_gen (0, GAME_HEIGHT);
     uniform_int_distribution<int> x_gen (0, GAME_WIDTH);
+    uniform_int_distribution<int> v_gen (0, ASTEROID_MAX_SPEED);
     
     // Put the ship into the list
     objectsInPlay.push_front(ship);
@@ -24,7 +25,9 @@ Game::Game(int startingNumAsteroids, int startingLives, int startingScore)
         SDL_Point p;
         p.x = x_gen(generator);
         p.y = y_gen(generator);
-        Asteroid *temp = new Asteroid(ASTEROID_DEFAULT_SIZE, p);
+        Asteroid *temp = new Asteroid(ASTEROID_DEFAULT_SIZE, p,
+                                      v_gen(generator)/ASTEROID_DEFAULT_SIZE,
+                                      v_gen(generator)/ASTEROID_DEFAULT_SIZE);
         objectsInPlay.push_back(temp);
     }
 };

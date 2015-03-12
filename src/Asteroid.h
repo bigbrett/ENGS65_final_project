@@ -17,7 +17,7 @@
 #define ASTEROID_BASE_SIZE      1
 #define ASTEROID_BASE_HEALTH    1
 #define ASTEROID_BASE_DAMAGE    2
-#define ASTEROID_BASE_SPEED     9
+#define ASTEROID_MAX_SPEED      9   // To scale speed based on size: speed/size
 
 enum Asteroid_Size {AS_SMALL=1, AS_MED, AS_LARGE};
 
@@ -25,7 +25,6 @@ class Asteroid: public GameObject
 {
 	Asteroid_Size size;
 public:
-    // Creates an asteroid with velocity BASED on provided velocities
     Asteroid(Asteroid_Size _size, SDL_Point location, int _x_velocity,
              int _y_velocity);
     Asteroid(const Asteroid& other);
