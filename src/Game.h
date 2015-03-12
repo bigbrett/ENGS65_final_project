@@ -13,6 +13,7 @@
 #include <SDL2/SDL.h>
 #include <cstdlib>
 #include <list>
+#include <random>
 #include "GameObject.h"
 #include "Ship.h"
 #include "Asteroid.h"  
@@ -30,7 +31,6 @@ class Game
 	int lives;                          // Number of lives remaining
     int score;                          // Player current score
 public:
-    Game();  // Default constructor
     Game(int startingNumAsteroids, int startingLives, int startingScore);
 	virtual ~Game();
     

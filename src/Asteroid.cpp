@@ -7,41 +7,16 @@
 
 #include "Asteroid.h"
 
-Asteroid::Asteroid()
-{
-    // Class Specific Variables
-    size = ASTEROID_DEFAULT_SIZE;
-    
-    // Parent Variables
-    objectType = AGT_ASTEROID;
-    collision_rect.x = OBJ_DEFAULT_LOCATION;
-    collision_rect.y = OBJ_DEFAULT_LOCATION;
-    collision_rect.h = size * ASTEROID_BASE_SIZE;
-    collision_rect.w = size * ASTEROID_BASE_SIZE;
-    rotation = OBJ_DEFAULT_ROTATION;
-    x_velocity = OBJ_DEFAULT_SPEED;
-    y_velocity = OBJ_DEFAULT_SPEED;
-    health = size * ASTEROID_BASE_HEALTH;
-    damage = size * ASTEROID_BASE_DAMAGE;
-}
 
 Asteroid::Asteroid(Asteroid_Size _size, SDL_Point location, int _x_velocity,
                    int _y_velocity)
+        : GameObject(AGT_ASTEROID, location, _size * ASTEROID_BASE_SIZE,
+            _size * ASTEROID_BASE_SIZE, OBJ_DEFAULT_ROTATION,
+            _x_velocity, _y_velocity, _size * ASTEROID_BASE_HEALTH,
+            _size * ASTEROID_BASE_DAMAGE)
 {
     // Class Specific Variables
     size = _size;
-    
-    // Parent Variables
-    objectType = AGT_ASTEROID;
-    collision_rect.x = location.x;
-    collision_rect.y = location.y;
-    collision_rect.h = size * ASTEROID_BASE_SIZE;
-    collision_rect.w = size * ASTEROID_BASE_SIZE;
-    rotation = OBJ_DEFAULT_ROTATION;
-    x_velocity = _x_velocity;
-    y_velocity = _y_velocity;
-    health = size * ASTEROID_BASE_HEALTH;
-    damage = size * ASTEROID_BASE_DAMAGE;
 }
 
 Asteroid::Asteroid(const Asteroid& other) : GameObject(other)
@@ -52,6 +27,7 @@ Asteroid::Asteroid(const Asteroid& other) : GameObject(other)
 void Asteroid::takeDmg(int dmg, Asteroid_GameObject_Type type)
 {
     if(type == AGT_SHIP) health = 0;    // Make sure the ship kills the asteroid
+    else if(type == AGT_ASTEROID)   {} // Do nothing if asteroids collide
     else health -= dmg;
 }
 
@@ -71,19 +47,23 @@ list<GameObject*> * Asteroid::destroy()
     
     p.x = collision_rect.x;
     p.y = collision_rect.y + offset;
-    Asteroid *a1 = new Asteroid(newSize, p, x_velocity, y_velocity + 1);
+    Asteroid *a1 = new Asteroid(newSize, p, x_velocity * size/newSize,
+                                y_velocity * size/newSize + 1);
     
     p.x = collision_rect.x;
     p.y = collision_rect.y - offset;
-    Asteroid *a2 = new Asteroid(newSize, p, x_velocity, y_velocity - 1);
+    Asteroid *a2 = new Asteroid(newSize, p, x_velocity * size/newSize,
+                                y_velocity * size/newSize - 1);
     
     p.x = collision_rect.x;
     p.y = collision_rect.y - offset;
-    Asteroid *a3 = new Asteroid(newSize, p, x_velocity + 1, y_velocity);
+    Asteroid *a3 = new Asteroid(newSize, p, x_velocity * size/newSize + 1,
+                                y_velocity * size/newSize);
     
     p.x = collision_rect.x;
     p.y = collision_rect.y - offset;
-    Asteroid *a4 = new Asteroid(newSize, p, x_velocity - 1, y_velocity);
+    Asteroid *a4 = new Asteroid(newSize, p, x_velocity * size/newSize - 1,
+                                y_velocity * size/newSize);
     
     temp->push_front((GameObject*) a1);
     temp->push_front((GameObject*) a2);

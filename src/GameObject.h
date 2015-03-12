@@ -18,6 +18,9 @@
 #include <cmath>
 #include "Texture.h"
 
+#define GAME_WIDTH  640
+#define GAME_HEIGHT 480
+
 #define PI 3.14159
 
 #define OBJ_DEFAULT_LOCATION    -1
@@ -61,32 +64,21 @@ protected:
     //Scene textures
     Texture gTexture;
     
+    // Check for moving offscreen
+    void movedOffScreen();
+    
     
 public:
-    /* Constructors and Destructor */ 
-    GameObject()
-    {
-        objectType = AGT_GAMEOBJECT;
-        collision_rect.x = OBJ_DEFAULT_LOCATION;
-        collision_rect.y = OBJ_DEFAULT_LOCATION;
-        collision_rect.h = OBJ_DEFAULT_SIZE;
-        collision_rect.w = OBJ_DEFAULT_SIZE;
-        rotation = OBJ_DEFAULT_ROTATION;
-        x_velocity = OBJ_DEFAULT_SPEED;
-        y_velocity = OBJ_DEFAULT_SPEED;
-        health = OBJ_DEFAULT_HEALTH;
-        damage = OBJ_DEFAULT_DAMAGE;
-    };
-    
-    GameObject(Asteroid_GameObject_Type type, SDL_Point location,
-               Asteroid_Direction _rotation, int _x_velocity, int _y_velocity,
-               int _health, int _damage)
+    /* Constructors and Destructor */
+    GameObject(Asteroid_GameObject_Type type, SDL_Point location, int height,
+               int width, Asteroid_Direction _rotation, int _x_velocity,
+               int _y_velocity, int _health, int _damage)
     {
         objectType = type;
-        collision_rect.x = OBJ_DEFAULT_LOCATION;
-        collision_rect.y = OBJ_DEFAULT_LOCATION;
-        collision_rect.h = OBJ_DEFAULT_SIZE;
-        collision_rect.w = OBJ_DEFAULT_SIZE;
+        collision_rect.x = location.x;
+        collision_rect.y = location.y;
+        collision_rect.h = height;
+        collision_rect.w = width;
         rotation = _rotation;
         x_velocity = _x_velocity;
         y_velocity = _y_velocity;
@@ -116,6 +108,7 @@ public:
     {
         collision_rect.x += x_velocity;
         collision_rect.y += y_velocity;
+        movedOffScreen();
     };
 
 	// Draw the object onto the game window surface
@@ -154,5 +147,32 @@ public:
         return damage;
     };
 };
+
+void GameObject::GameObject movedOffScreen()
+{
+    // Check against having moved off left
+    if(collision_rect.x + collision_rect.w < 0)
+    {
+        collision_rect.x = collision_rect.x + GAME_WIDTH;
+    }
+    
+    // Check against having moved off right
+    if (collision_rect.x > GAME_WIDTH)
+    {
+        collision_rect.x = GAME_WIDTH - collision_rect.x;
+    }
+    
+    // Check against having moved off top
+    if (collision_rect.y + collision_rect.h < 0)
+    {
+        collision_rect.y = collision_rect.y + GAME_HEIGHT;
+    }
+    
+    // Check against having moved off bottom
+    if (collision_rect.y > GAME_HEIGHT)
+    {
+        collision_rect.y = GAME_HEIGHT - collision_rect.y;
+    }
+}
 
 #endif /* GAMEOBJECT_H_ */

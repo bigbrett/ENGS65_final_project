@@ -8,31 +8,17 @@
 #include "Ship.h"
 
 Ship::Ship()
+    : GameObject(AGT_SHIP, SHIP_DEFAULT_X_LOCATION, SHIP_DEFAULT_Y_LOCATION,
+                 SHIP_DEFAULT_SIZE, SHIP_DEFAULT_SIZE, OBJ_DEFAULT_ROTATION,
+                 0, 0, SHIP_DEFAULT_HEALTH, 0)
 {
     // Class Specific Variables
     shield = 0;
-    
-    // Parent Variables
-    objectType = AGT_SHIP;
-    collision_rect.x = SHIP_DEFAULT_LOCATION;
-    collision_rect.y = SHIP_DEFAULT_LOCATION;
-    collision_rect.h = SHIP_DEFAULT_SIZE;
-    collision_rect.w = SHIP_DEFAULT_SIZE;
-    rotation = OBJ_DEFAULT_ROTATION;
-    x_velocity = OBJ_DEFAULT_SPEED;
-    y_velocity = OBJ_DEFAULT_SPEED;
-    health = SHIP_DEFAULT_HEALTH;
-    damage = OBJ_DEFAULT_DAMAGE;
 }
 
 Ship::Ship(const Ship& other) : GameObject(other)
 {
     shield = other.shield;
-}
-
-void Ship::move()
-{
-    /* TODO */
 }
 
 void Ship::takeDmg(int dmg, Asteroid_GameObject_Type type)
