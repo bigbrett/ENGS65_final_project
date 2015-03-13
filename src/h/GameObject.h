@@ -61,7 +61,7 @@ public:
         y_velocity = _y_velocity;
         health = _health;
         damage = _damage;
-    };
+    }
     
     GameObject(const GameObject& other) {
         objectType = other.objectType;
@@ -76,17 +76,12 @@ public:
         damage = other.damage;
     }
     
-    virtual ~GameObject(){};
+    virtual ~GameObject(){}
     
     /* Overloadable Operations */
     
 	// Make the object move
-	virtual void move()
-    {
-        collision_rect.x += x_velocity;
-        collision_rect.y += y_velocity;
-        movedOffScreen();
-    };
+    virtual void move();
 
 	// Draw the object onto the game window surface
 	// Doesn't do anything in this class
@@ -96,14 +91,14 @@ public:
 	virtual void takeDmg(int dmg, Asteroid_GameObject_Type type)
     {
         health -= dmg;
-    };
+    }
     
     // Destroy the object; returns a list of new objects that replace it
     virtual list<GameObject*> * destroy()
     {
         list<GameObject*> *temp = new list<GameObject*>();
         return temp;
-    };
+    }
     
     /* Standard functions */
     
@@ -111,45 +106,18 @@ public:
     bool isDestroyed()
     {
         return health<=0;
-    };
+    }
 
 	/* Getters */
 	Asteroid_GameObject_Type getObjectType()
     {
         return objectType;
-    };
+    }
     
 	int getDamage()
     {
         return damage;
-    };
+    }
 };
-
-inline void GameObject::movedOffScreen()
-{
-    // Check against having moved off left
-    if(collision_rect.x + collision_rect.w < 0)
-    {
-        collision_rect.x = collision_rect.x + GAME_WIDTH;
-    }
-    
-    // Check against having moved off right
-    if (collision_rect.x > GAME_WIDTH)
-    {
-        collision_rect.x = GAME_WIDTH - collision_rect.x;
-    }
-    
-    // Check against having moved off top
-    if (collision_rect.y + collision_rect.h < 0)
-    {
-        collision_rect.y = collision_rect.y + GAME_HEIGHT;
-    }
-    
-    // Check against having moved off bottom
-    if (collision_rect.y > GAME_HEIGHT)
-    {
-        collision_rect.y = GAME_HEIGHT - collision_rect.y;
-    }
-}
 
 #endif /* GAMEOBJECT_H_ */
