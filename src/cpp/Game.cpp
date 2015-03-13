@@ -35,8 +35,32 @@
 
 Game::Game(int startingNumAsteroids, int startingLives, int startingScore)
 {
-    this->renderer = new Renderer(this->window.gWindow);
-    this->play();
+	lives = startingLives;
+	score = startingScore;
+
+	// Create random number generator for placing asteroids on the field
+	default_random_engine generator;
+	uniform_int_distribution <int> y_gen(0, GAME_HEIGHT);
+	uniform_int_distribution <int> x_gen(0, GAME_WIDTH);
+	uniform_int_distribution <int> v_gen(0, ASTEROID_MAX_SPEED);
+
+	// Put the ship into the list
+    ship = new Ship();
+	objectsInPlay.push_front(ship);
+
+	// Add the asteroids in
+	for (int i = 0; i < startingNumAsteroids; i++) {
+		SDL_Point p;
+		p.x = x_gen(generator);
+		p.y = y_gen(generator);
+		Asteroid *temp = new Asteroid(ASTEROID_DEFAULT_SIZE, p,
+		                              v_gen(generator) / ASTEROID_DEFAULT_SIZE,
+		                              v_gen(generator) / ASTEROID_DEFAULT_SIZE);
+		objectsInPlay.push_back(temp);
+	}
+
+	this->renderer = new Renderer(this->window.gWindow);
+	this->play();
 }
 
 
@@ -176,14 +200,17 @@ bool Game::updateState()
 
 bool Game::drawGame()
 {
-    bool flag = true;
-    
-    list<GameObject*>::iterator in_play_iter;
-    for (in_play_iter = objectsInPlay.begin(); in_play_iter != objectsInPlay.end(); in_play_iter++)
-    {
-        (*in_play_iter)->draw(renderer->gRenderer);
-    }
-    
-    
-    return flag;
+	bool flag = true;
+
+	list <GameObject *>::iterator in_play_iter;
+	if (!objectsInPlay.empty()) {
+		for (in_play_iter = objectsInPlay.begin(); in_play_iter != objectsInPlay.end(); in_play_iter++) {
+			(*in_play_iter)->draw(renderer->gRenderer);
+		}
+	}
+	else
+		flag = false;
+
+
+	return flag;
 }
