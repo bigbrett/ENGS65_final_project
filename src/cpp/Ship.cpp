@@ -58,30 +58,38 @@ Bullet * Ship::shoot()
     return newBullet;
 }
 
-void Ship::handleKeyboardEvent(SDL_Event &e){
-    if(e.type == SDL_KEYDOWN && e.key.repeat == 0)
-    {
-        switch(e.key.keysym.sym)
-        {
-            case SDLK_UP: y_velocity -= DOT_VEL; break;
-            case SDLK_DOWN: y_velocity += DOT_VEL; break;
-            case SDLK_LEFT: x_velocity -= DOT_VEL; break;
-            case SDLK_RIGHT: x_velocity += DOT_VEL; break;
-            default: break;
-        }
-    }
-    else if(e.type == SDL_KEYUP && e.key.repeat == 0)
-    {
-        switch(e.key.keysym.sym)
-        {
-            case SDLK_UP: y_velocity = 0; break;
-            case SDLK_DOWN: y_velocity = 0; break;
-            case SDLK_LEFT: x_velocity = 0; break;
-            case SDLK_RIGHT: x_velocity = 0; break;
-            default: break;
-        }
-    }
+//void Ship::handleKeyboardEvent(SDL_Event &e){
+//    if(e.type == SDL_KEYDOWN && e.key.repeat == 0)
+//    {
+//        switch(e.key.keysym.sym)
+//        {
+//            case SDLK_UP: y_velocity -= DOT_VEL; break;
+//            case SDLK_DOWN: y_velocity += DOT_VEL; break;
+//            case SDLK_LEFT: x_velocity -= DOT_VEL; break;
+//            case SDLK_RIGHT: x_velocity += DOT_VEL; break;
+//            default: break;
+//        }
+//    }
+//    else if(e.type == SDL_KEYUP && e.key.repeat == 0)
+//    {
+//        switch(e.key.keysym.sym)
+//        {
+//            case SDLK_UP: y_velocity = 0; break;
+//            case SDLK_DOWN: y_velocity = 0; break;
+//            case SDLK_LEFT: x_velocity = 0; break;
+//            case SDLK_RIGHT: x_velocity = 0; break;
+//            default: break;
+//        }
+//    }
+//}
+
+
+void Ship::draw(SDL_Renderer* rend)
+{
+    cout << "hello world" << endl;
 }
+
+
 
 /*
 Dot::Dot()

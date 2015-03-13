@@ -21,6 +21,30 @@
 #define OBJ_DEFAULT_HEALTH      -1
 #define OBJ_DEFAULT_DAMAGE      0
 
+#define SHIP_DEFAULT_X_LOCATION (GAME_WIDTH - SHIP_DEFAULT_SIZE) / 2
+#define SHIP_DEFAULT_Y_LOCATION (GAME_HEIGHT - SHIP_DEFAULT_SIZE) / 2
+#define SHIP_DEFAULT_SIZE       5
+#define SHIP_DEFAULT_HEALTH     5
+#define DOT_VEL 10      // FOR INTIAL SHIP EVENT HANDLING TESTING PURPOSES
+
+
+#define ASTEROID_DEFAULT_SIZE   AS_LARGE
+#define ASTEROID_BASE_SIZE      1
+#define ASTEROID_BASE_HEALTH    1
+#define ASTEROID_BASE_DAMAGE    2
+#define ASTEROID_MAX_SPEED      11  // To scale speed based on size: speed/size
+// Allows for speeds 0-3 for large, 0-5 for
+// medium and 0-11 for small
+
+#define BULLET_DEFAULT_DAMAGE   1
+#define BULLET_DEFAULT_SIZE     1
+#define BULLET_DEFAULT_HEALTH   1
+#define BULLET_DEFAULT_SPEED    3
+#define BULLET_MAX_DISTANCE     100
+
+#define DEFAULT_NUM_ASTEROIDS 10
+#define DEFAULT_NUM_LIVES 3
+
 enum Asteroid_GameObject_Type
 {
     AGT_GAMEOBJECT, AGT_SHIP, AGT_BULLET, AGT_ASTEROID

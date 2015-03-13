@@ -11,6 +11,10 @@
 
 #include <SDL2/SDL.h>
 #include "Globals.h"
+#include <iostream>
+
+using namespace std;
+
 class Window
 {
 private:

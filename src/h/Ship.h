@@ -13,17 +13,12 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
-#include <stdio.h>
+#include <iostream>
 
 #include "GameObject.h"
 #include "Bullet.h"
 
-#define SHIP_DEFAULT_X_LOCATION (GAME_WIDTH - SHIP_DEFAULT_SIZE) / 2
-#define SHIP_DEFAULT_Y_LOCATION (GAME_HEIGHT - SHIP_DEFAULT_SIZE) / 2
-#define SHIP_DEFAULT_SIZE       5
-#define SHIP_DEFAULT_HEALTH     5
-
-#define DOT_VEL 10      // FOR INTIAL SHIP EVENT HANDLING TESTING PURPOSES
+using namespace std;
 
 class Ship: public GameObject
 {
@@ -48,6 +43,7 @@ public:
     
     // Handle a keyboard arrow press event
     void handleKeyboardEvent(SDL_Event &e);
+    void draw(SDL_Renderer* rend);
 };
 
 

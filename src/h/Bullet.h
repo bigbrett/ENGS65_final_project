@@ -12,13 +12,10 @@
 #define BULLET_H_
 
 #include "GameObject.h"
+#include "Globals.h"
 
-#define BULLET_DEFAULT_DAMAGE   1
-#define BULLET_DEFAULT_SIZE     1
-#define BULLET_DEFAULT_HEALTH   1
-#define BULLET_DEFAULT_SPEED    3
-#define BULLET_MAX_DISTANCE     100
 
+using namespace std;
 
 class Bullet: public GameObject
 {

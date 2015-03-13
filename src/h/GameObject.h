@@ -90,7 +90,7 @@ public:
 
 	// Draw the object onto the game window surface
 	// Doesn't do anything in this class
-	virtual void draw(SDL_Surface *gameWindow){};
+    virtual void draw(SDL_Renderer* rend){};
 
 	// Damage the object from a collision
 	virtual void takeDmg(int dmg, Asteroid_GameObject_Type type)
@@ -125,7 +125,7 @@ public:
     };
 };
 
-void GameObject::movedOffScreen()
+inline void GameObject::movedOffScreen()
 {
     // Check against having moved off left
     if(collision_rect.x + collision_rect.w < 0)

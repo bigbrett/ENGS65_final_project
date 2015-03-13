@@ -5,10 +5,13 @@
 //  Based on code written by 
 //
 
-#ifndef __Test__Renderer__
-#define __Test__Renderer__
+#ifndef __Renderer__
+#define __Renderer__
 
 #include <SDL2/SDL.h>
+#include <iostream>
+
+using namespace std;
 
 class Renderer
 {
