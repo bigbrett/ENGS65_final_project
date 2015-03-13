@@ -202,6 +202,8 @@ bool Game::drawGame()
 {
 	bool flag = true;
 
+    
+    renderer->clear();
 	list <GameObject *>::iterator in_play_iter;
 	if (!objectsInPlay.empty()) {
 		for (in_play_iter = objectsInPlay.begin(); in_play_iter != objectsInPlay.end(); in_play_iter++) {
@@ -210,7 +212,8 @@ bool Game::drawGame()
 	}
 	else
 		flag = false;
-
+    
+    renderer->present();
 
 	return flag;
 }

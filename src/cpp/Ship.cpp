@@ -86,7 +86,31 @@ Bullet * Ship::shoot()
 
 void Ship::draw(SDL_Renderer* rend)
 {
-    cout << "hello world" << endl;
+    float angle = 2/AD_SIZE*PI*rotation;
+    float cosA = cos(angle);
+    float sinA = sin(angle);
+   
+    SDL_Point* ship = new SDL_Point[5];
+    SDL_Rect pos = collision_rect;
+    ship[0] = {int(cosA * (pos.x-10 - pos.x) - sinA * (pos.y - pos.y) + pos.x),
+        int(sinA * (pos.x-10 - pos.x) + cosA * (pos.y - pos.y) + pos.y)};
+    
+    ship[1] = {int(cosA * (pos.x+10 - pos.x) - sinA * (pos.y-10 - pos.y) + pos.x),
+        int(sinA * (pos.x+10 - pos.x) + cosA * (pos.y-10 - pos.y) + pos.y)};
+    
+    ship[2] = {int(cosA * (pos.x+5 - pos.x) - sinA * (pos.y - pos.y) + pos.x),
+        int(sinA * (pos.x+5 - pos.x) + cosA * (pos.y - pos.y) + pos.y)};
+    
+    ship[3] = {int(cosA * (pos.x+10 - pos.x) - sinA * (pos.y+10 - pos.y) + pos.x),
+        int(sinA * (pos.x+10 - pos.x) + cosA * (pos.y+10 - pos.y) + pos.y)};
+    
+    ship[4] = {int(cosA * (pos.x-10 - pos.x) - sinA * (pos.y - pos.y) + pos.x),
+        int(sinA * (pos.x-10 - pos.x) + cosA * (pos.y - pos.y) + pos.y)};
+
+    
+    
+    SDL_SetRenderDrawColor(rend, 255,255,255, 255);
+    SDL_RenderDrawLines(rend, ship, 5);
 }
 
 
