@@ -4,11 +4,13 @@
 //
 //  Based on code written by 
 //
-#ifndef Test_CLEANUP_h
-#define Test_CLEANUP_h
+#ifndef __CLEANUP_h
+#define __CLEANUP_h
 
 #include <utility>
 #include <SDL2/SDL.h>
+
+using namespace std;
 
 /*
  * Recurse through the list of arguments to clean up, cleaning up

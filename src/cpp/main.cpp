@@ -7,13 +7,14 @@
 #include <stdio.h>
 #include <string>
 #include "Ship.h"
+#include "Game.h"
 
 
 
 
 int main( int argc, char* args[] )
 {
-   
+    Game(5,5,0);
     
     return 0;
 }

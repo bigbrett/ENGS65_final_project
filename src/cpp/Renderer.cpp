@@ -2,7 +2,7 @@
 //  Renderer.cpp
 //  Test
 //
-//  Based on code written by 
+//  Based on code written by
 //
 
 #include "Renderer.h"
@@ -13,6 +13,11 @@
 Renderer::Renderer(SDL_Window* gWindow)
 {
     this->gRenderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED);
+    if (this->gRenderer == nullptr){
+        SDL_DestroyWindow(gWindow);
+        std::cout << "SDL_CreateRenderer Error: " << SDL_GetError() << std::endl;
+        SDL_Quit();
+    }
 }
 
 /*

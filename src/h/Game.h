@@ -17,7 +17,7 @@
 #include <list>
 #include <random>
 
-//#include <SDL2/SDL.h>
+#include <SDL2/SDL.h>
 #include "GameObject.h"
 #include "Ship.h"
 #include "Asteroid.h"  
@@ -27,8 +27,7 @@
 #include "Window.h"
 #include "Globals.h"
 
-#define DEFAULT_NUM_ASTEROIDS 10
-#define DEFAULT_NUM_LIVES 3
+
 
 using namespace std;
 
@@ -40,23 +39,26 @@ private:
     Renderer* renderer; // wrapper class for SDL graphics renderer object
     SDL_Event eventQ; // SDL event queue
     
-	list<GameObject*> objectsInPlay; 	// A DLL to hold all the GameObjects
+    list<GameObject*> objectsInPlay; 	// A DLL to hold all the GameObjects
     Ship *ship;                         // So we can always directly access ship
-	int lives;                          // Number of lives remaining
+    int lives;                          // Number of lives remaining
     int score;                          // Player current score
+    
+    
+    
 public:
     Game(int startingNumAsteroids, int startingLives, int startingScore);
-	virtual ~Game();
+    virtual ~Game();
+    
+    void play(void); // gameplay loop
+    void handleEvents(void); // Handle SDL Events
     
     // Have the game update its state. Returns TRUE if game still running
     // (FALSE when player runs out of lives)
     bool updateState();
     
     // Have the game draw itself onto the window. Returns TRUE if successful
-    bool drawGame(SDL_Renderer *renderer);
-    
-    // Handle SDL Events
-    void handleEvent(SDL_Event &e);
+    bool drawGame();
 };
 
 #endif /* GAME_H_ */

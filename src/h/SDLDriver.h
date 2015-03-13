@@ -5,10 +5,13 @@
 //  Based on code written by 
 //
 
-#ifndef __Test__SDLDriver__
-#define __Test__SDLDriver__
+#ifndef __Asteroids__SDLDriver__
+#define __Asteroids__SDLDriver__
 
 #include <SDL2/SDL.h>
+#include <iostream> 
+
+using namespace std;
 
 class SDLDriver
 {
