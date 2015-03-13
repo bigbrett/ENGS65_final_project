@@ -9,7 +9,7 @@
 
 Ship::Ship()
     : GameObject(AGT_SHIP, SDL_Point (),
-                 SHIP_DEFAULT_SIZE, SHIP_DEFAULT_SIZE, OBJ_DEFAULT_ROTATION,
+                 SHIP_DEFAULT_SIZE, SHIP_DEFAULT_SIZE, SHIP_DEFAULT_ROTATION,
                  0, 0, SHIP_DEFAULT_HEALTH, 0)
 {
     collision_rect.x = SHIP_DEFAULT_X_LOCATION;
@@ -46,8 +46,8 @@ list<GameObject*> * Ship::destroy()
 
 Bullet * Ship::shoot()
 {
-    int delX = collision_rect.w * cos(2/AD_SIZE*PI*rotation);
-    int delY = collision_rect.h * sin(2/AD_SIZE*PI*rotation);
+    int delX = collision_rect.w * cos(rotation);
+    int delY = collision_rect.h * sin(rotation);
     SDL_Point loc;
     loc.x = collision_rect.x + delX;
     loc.y = collision_rect.y + delY;
@@ -86,35 +86,41 @@ Bullet * Ship::shoot()
 
 void Ship::draw(SDL_Renderer* rend)
 {
-    float angle = 2/AD_SIZE*PI*rotation;
-    float cosA = cos(angle);
-    float sinA = sin(angle);
+    float cosA = cos(rotation);
+    float sinA = sin(rotation);
    
     SDL_Point* ship = new SDL_Point[5];
     SDL_Rect pos = collision_rect;
-    ship[0] = {int(cosA * (pos.x-10 - pos.x) - sinA * (pos.y - pos.y) + pos.x),
-        int(sinA * (pos.x-10 - pos.x) + cosA * (pos.y - pos.y) + pos.y)};
+    pos.x = pos.x + pos.w / 2;  // Move coordinates to center of the rectangle
+    pos.y = pos.y + pos.h / 2;
+    ship[0] = {int(cosA * pos.w + pos.x), int(-sinA * pos.h + pos.y)};
     
-    ship[1] = {int(cosA * (pos.x+10 - pos.x) - sinA * (pos.y-10 - pos.y) + pos.x),
-        int(sinA * (pos.x+10 - pos.x) + cosA * (pos.y-10 - pos.y) + pos.y)};
+    ship[1] = {int(-cosA * pos.w + sinA * pos.h + pos.x),
+            int(sinA * pos.h + cosA * pos.w + pos.y)};
     
-    ship[2] = {int(cosA * (pos.x+5 - pos.x) - sinA * (pos.y - pos.y) + pos.x),
-        int(sinA * (pos.x+5 - pos.x) + cosA * (pos.y - pos.y) + pos.y)};
+    ship[2] = {int(-cosA * pos.w / 2 + pos.x), int(sinA * pos.h / 2 + pos.y)};
     
-    ship[3] = {int(cosA * (pos.x+10 - pos.x) - sinA * (pos.y+10 - pos.y) + pos.x),
-        int(sinA * (pos.x+10 - pos.x) + cosA * (pos.y+10 - pos.y) + pos.y)};
+    ship[3] = {int(-cosA * pos.w - sinA * pos.h + pos.x),
+        int(sinA * pos.h - cosA * pos.w + pos.y)};
     
-    ship[4] = {int(cosA * (pos.x-10 - pos.x) - sinA * (pos.y - pos.y) + pos.x),
-        int(sinA * (pos.x-10 - pos.x) + cosA * (pos.y - pos.y) + pos.y)};
-
+    ship[4] = {int(cosA * pos.w + pos.x), int(-sinA * pos.h + pos.y)};
     
     
     SDL_SetRenderDrawColor(rend, 255,255,255, 255);
     SDL_RenderDrawLines(rend, ship, 5);
 }
 
+void Ship::rotateCW()
+{
+    if(rotation <= 0) rotation = AD_ESE * ANGLE_INC;
+    else rotation -= ANGLE_INC;
+}
 
-
+void Ship::rotateCCW()
+{
+    if(rotation >= AD_ESE * ANGLE_INC) rotation = 0;
+    else rotation += ANGLE_INC;
+}
 /*
 Dot::Dot()
 {

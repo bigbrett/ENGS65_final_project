@@ -8,6 +8,23 @@
 
 #include "GameObject.h"
 
+GameObject::GameObject(Asteroid_GameObject_Type type, SDL_Point location,
+                       int height, int width, Asteroid_Direction _rotation,
+                       int _x_velocity, int _y_velocity, int _health,
+                       int _damage)
+{
+    objectType = type;
+    collision_rect.x = location.x;
+    collision_rect.y = location.y;
+    collision_rect.h = height;
+    collision_rect.w = width;
+    rotation = _rotation * ANGLE_INC;
+    x_velocity = _x_velocity;
+    y_velocity = _y_velocity;
+    health = _health;
+    damage = _damage;
+}
+
 void GameObject::movedOffScreen()
 {
     // Check against having moved off left

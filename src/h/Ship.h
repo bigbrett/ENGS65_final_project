@@ -33,6 +33,7 @@ public:
 	/* Overloaded Functions */
 	void takeDmg(int dmg, Asteroid_GameObject_Type type);
     list<GameObject*> * destroy();
+    void draw(SDL_Renderer* rend);
     
     /* Ship Specific Functions */
 
@@ -41,9 +42,14 @@ public:
     // traveling in the direction the ship is pointing
 	Bullet * shoot();
     
+    // Rotate the ship 1 ANGLE_INC CW
+    void rotateCW();
+    
+    // Rotate the ship 1 ANGLE_INC CCW
+    void rotateCCW();
+    
     // Handle a keyboard arrow press event
-    void handleKeyboardEvent(SDL_Event &e);
-    void draw(SDL_Renderer* rend);
+//    void handleKeyboardEvent(SDL_Event &e);
 };
 
 

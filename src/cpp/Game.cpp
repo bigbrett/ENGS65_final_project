@@ -133,11 +133,13 @@ void Game::handleEvents()
                     // Handle left key
                 case SDL_SCANCODE_LEFT:
                     cout << "KeyDown LEFT!" << endl;
+                    ship->rotateCCW();
                     break;
                     
                     // Handle right key
                 case SDL_SCANCODE_RIGHT:
                     cout << "KeyDown RIGHT!" << endl;
+                    ship->rotateCW();
                     break;
                     
                     // Handle space
