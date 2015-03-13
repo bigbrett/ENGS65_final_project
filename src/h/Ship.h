@@ -24,7 +24,8 @@ class Ship: public GameObject
 {
 private:
 	int shield;					// Damage reduction from collisions
-
+    bool accelerate;
+    
 public:
 	Ship();
     Ship(const Ship& other);
@@ -47,6 +48,9 @@ public:
     
     // Rotate the ship 1 ANGLE_INC CCW
     void rotateCCW();
+    
+    // Set whether the ship should be accelerating or not
+    void setAccelerate(bool accel);
     
     // Handle a keyboard arrow press event
 //    void handleKeyboardEvent(SDL_Event &e);

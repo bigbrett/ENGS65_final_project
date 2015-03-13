@@ -59,6 +59,8 @@ Game::Game(int startingNumAsteroids, int startingLives, int startingScore)
 		objectsInPlay.push_back(temp);
 	}
 
+    keyboardState = SDL_GetKeyboardState(NULL);
+    
 	this->renderer = new Renderer(this->window.gWindow);
 	this->play();
 }
@@ -79,9 +81,13 @@ void Game::play()
         // Handle events in the event queue
         this->handleEvents();
         
+        // Check for pressed keys
+        this->handleKeyboard();
+        
         // Update game state
         this->updateState();
         
+        // Draw the game
         this->drawGame();
     }
 }
@@ -123,6 +129,7 @@ void Game::handleEvents()
                     // Handle up key
                 case SDL_SCANCODE_UP:
                     cout << "KeyDown UP!" << endl;
+                    ship->setAccelerate(true);
                     break;
                     
                     // Handle down key
@@ -159,6 +166,7 @@ void Game::handleEvents()
                     // Handle up key
                 case SDL_SCANCODE_UP:
                     cout << "KeyUp UP!" << endl;
+                    ship->setAccelerate(false);
                     break;
                     
                     // Handle down key
@@ -193,7 +201,7 @@ bool Game::updateState()
 {
     bool flag = true;
     
-    
+    ship->move();
     
     return flag;
 }
@@ -218,4 +226,11 @@ bool Game::drawGame()
     renderer->present();
 
 	return flag;
+}
+
+void Game::handleKeyboard()
+{
+    if (keyboardState[SDL_SCANCODE_UP]) {
+        cout << "KeyState Up" << endl;
+    }
 }

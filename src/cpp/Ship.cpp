@@ -17,6 +17,7 @@ Ship::Ship()
     
     // Class Specific Variables
     shield = 0;
+    accelerate = false;
 }
 
 Ship::Ship(const Ship& other) : GameObject(other)
@@ -120,6 +121,22 @@ void Ship::rotateCCW()
 {
     if(rotation >= AD_ESE * ANGLE_INC) rotation = 0;
     else rotation += ANGLE_INC;
+}
+
+void Ship::setAccelerate(bool accel)
+{
+    accelerate = accel;
+    if(accelerate)
+    {
+        x_velocity = cos(rotation) * SHIP_DEFAULT_SPEED;
+        y_velocity = -sin(rotation) * SHIP_DEFAULT_SPEED;
+        
+    }
+    else
+    {
+        x_velocity = 0;
+        y_velocity = 0;
+    }
 }
 /*
 Dot::Dot()
