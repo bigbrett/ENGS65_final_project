@@ -63,12 +63,10 @@ void GameObject::move()
 
 void GameObject::collision(GameObject *obj1, GameObject *obj2)
 {
-    SDL_Rect *rect = new SDL_Rect;
     if(SDL_IntersectRect(&(obj1->collision_rect), &(obj2->collision_rect),
-                         rect))
+                         nullptr))
     {
         obj1->takeDmg(obj2->getDamage(), obj2->getObjectType());
         obj2->takeDmg(obj1->getDamage(), obj1->getObjectType());
     }
-    delete rect;
 }
