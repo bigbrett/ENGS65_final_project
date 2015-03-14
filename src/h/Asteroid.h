@@ -17,7 +17,7 @@
 
 using namespace std;
 
-enum Asteroid_Size {AS_SMALL, AS_MED, AS_LARGE};
+enum Asteroid_Size {AS_SMALL=1, AS_MED, AS_LARGE};
 
 class Asteroid: public GameObject
 {
