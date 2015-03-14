@@ -2,7 +2,7 @@
 //  Globals.h
 //  Asteroids
 //
-//  Created by Brett Nicholas on 3/12/15.
+//  Created by Brett Nicholas
 //  Copyright (c) 2015 Brett Nicholas. All rights reserved.
 //
 

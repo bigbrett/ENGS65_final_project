@@ -2,7 +2,7 @@
 //  Timer.h
 //  Asteroids
 //
-//  Created by Brett Nicholas on 3/11/15.
+//  Created by Brett Nicholas
 //  Copyright (c) 2015 Brett Nicholas. All rights reserved.
 //
 
