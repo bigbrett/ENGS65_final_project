@@ -20,7 +20,7 @@ class TextRenderer {
 public:
     static void initText();
     static void quitText();
-    static void printLives(SDL_Renderer *rend, int lives);
+    static void printGameData(SDL_Renderer *rend, int lives, int score);
     static void printGameOverLose(SDL_Renderer *rend);
     static void printGameOverWin(SDL_Renderer *rend);
 };

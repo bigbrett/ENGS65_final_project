@@ -21,13 +21,13 @@ void TextRenderer::quitText()
     TTF_Quit();
 }
 
-void TextRenderer::printLives(SDL_Renderer *rend, int lives)
+void TextRenderer::printGameData(SDL_Renderer *rend, int lives, int score)
 {
     stringstream ss;
     ss.str("");
     ss << "Lives remaining: " << lives;
     
-    TTF_Font *livesFont = TTF_OpenFont("/Users/Dan1/Desktop/Asteroids/data-latin.ttf", 16);
+    TTF_Font *livesFont = TTF_OpenFont(FONT_PATH, 16);
     SDL_Color white = {255, 255, 255};
     SDL_Surface *surf = TTF_RenderText_Solid(livesFont, ss.str().c_str(), white);
     SDL_Texture *msg = SDL_CreateTextureFromSurface(rend, surf);
@@ -36,12 +36,27 @@ void TextRenderer::printLives(SDL_Renderer *rend, int lives)
     msg_rect.y = 0; // controls the rect's y coordinte
     msg_rect.w = surf->w; // controls the width of the rect
     msg_rect.h = surf->h; // controls the height of the rect
-
+    
     SDL_RenderCopy(rend, msg, NULL, &msg_rect);
     SDL_FreeSurface(surf);
-    TTF_CloseFont(livesFont);
     SDL_DestroyTexture(msg);
     
+    ss.str("");
+    ss << "Score: " << score;
+    
+    surf = TTF_RenderText_Solid(livesFont, ss.str().c_str(), white);
+    msg = SDL_CreateTextureFromSurface(rend, surf);
+    SDL_Rect msg_rect2;
+    msg_rect2.x = 0;
+    msg_rect2.y = msg_rect.h + 5;
+    msg_rect2.w = surf->w;
+    msg_rect2.h = surf->h;
+    
+    SDL_RenderCopy(rend, msg, NULL, &msg_rect2);
+    SDL_FreeSurface(surf);
+    SDL_DestroyTexture(msg);
+    
+    TTF_CloseFont(livesFont);
 }
 
 void TextRenderer::printGameOverLose(SDL_Renderer *rend)
@@ -49,7 +64,7 @@ void TextRenderer::printGameOverLose(SDL_Renderer *rend)
     stringstream ss;
     ss.str("GAME OVER! YOU LOSE!");
     
-    TTF_Font *gameFont = TTF_OpenFont("/Users/Dan1/Desktop/Asteroids/data-latin.ttf", 72);
+    TTF_Font *gameFont = TTF_OpenFont(FONT_PATH, 72);
     SDL_Color white = {255, 255, 255};
     SDL_Surface *surf = TTF_RenderText_Solid(gameFont, ss.str().c_str(), white);
     SDL_Texture *msg = SDL_CreateTextureFromSurface(rend, surf);
@@ -71,7 +86,7 @@ void TextRenderer::printGameOverWin(SDL_Renderer *rend)
     stringstream ss;
     ss.str("GAME OVER! YOU WIN!");
     
-    TTF_Font *gameFont = TTF_OpenFont("/Users/Dan1/Desktop/Asteroids/data-latin.ttf", 72);
+    TTF_Font *gameFont = TTF_OpenFont(FONT_PATH, 72);
     SDL_Color white = {255, 255, 255};
     SDL_Surface *surf = TTF_RenderText_Solid(gameFont, ss.str().c_str(), white);
     SDL_Texture *msg = SDL_CreateTextureFromSurface(rend, surf);

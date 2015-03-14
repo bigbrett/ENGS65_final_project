@@ -13,6 +13,8 @@
 #define GAME_HEIGHT 720
 #define KEYBOARD_TIMER_INTERVAL   100
 
+#define FONT_PATH   "/Users/Dan1/git/ENGS65_final_project/src/media/data-latin.ttf"
+
 #define PI 3.14159
 #define ANGLE_INC 2*PI/AD_SIZE
 

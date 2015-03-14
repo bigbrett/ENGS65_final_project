@@ -245,6 +245,10 @@ bool Game::updateState()
                     }
                 }
                 delete temp;
+                if((*in_play_iter)->getObjectType() == AGT_ASTEROID)
+                {
+                    score++;
+                }
                 delete (*in_play_iter); // delete the data at the location
                 objectsInPlay.remove((*in_play_iter));  // remove the pointer
             }
@@ -274,7 +278,7 @@ bool Game::drawGame()
 	else
 		flag = false;
     
-    TextRenderer::printLives(renderer->gRenderer, ship->getLives());
+    TextRenderer::printGameData(renderer->gRenderer, ship->getLives(), score);
     
     if(ship->getLives()<=0)
     {
