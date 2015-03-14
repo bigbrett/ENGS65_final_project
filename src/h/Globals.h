@@ -9,8 +9,8 @@
 #ifndef Asteroids_Globals_h
 #define Asteroids_Globals_h
 
-#define GAME_WIDTH  640
-#define GAME_HEIGHT 480
+#define GAME_WIDTH  1080
+#define GAME_HEIGHT 720
 #define KEYBOARD_TIMER_INTERVAL   100
 
 #define PI 3.14159
@@ -28,7 +28,7 @@
 #define SHIP_DEFAULT_ROTATION   AD_N
 #define SHIP_DEFAULT_SIZE       10
 #define SHIP_DEFAULT_HEALTH     5
-#define SHIP_DEFAULT_SPEED      10      
+#define SHIP_DEFAULT_SPEED      5
 
 #define ASTEROID_DEFAULT_SIZE   AS_LARGE
 #define ASTEROID_BASE_SIZE      1
@@ -39,9 +39,9 @@
 // medium and 0-11 for small
 
 #define BULLET_DEFAULT_DAMAGE   1
-#define BULLET_DEFAULT_SIZE     1
+#define BULLET_DEFAULT_SIZE     3
 #define BULLET_DEFAULT_HEALTH   1
-#define BULLET_DEFAULT_SPEED    3
+#define BULLET_DEFAULT_SPEED    7
 #define BULLET_MAX_DISTANCE     100
 
 #define DEFAULT_NUM_ASTEROIDS 10
