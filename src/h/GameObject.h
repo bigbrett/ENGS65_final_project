@@ -58,7 +58,7 @@ public:
     }
     
     virtual ~GameObject(){}
-    void move();
+    virtual void move();
     
     /* Overloadable Operations */
     
