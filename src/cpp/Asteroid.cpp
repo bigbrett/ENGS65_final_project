@@ -86,38 +86,48 @@ void Asteroid::draw(SDL_Renderer* rend)
     pos.x = pos.x + pos.w / 2;  // Move coordinates to center of the rectangle
     pos.y = pos.y + pos.h / 2;
     
-            lines[0] = { int(cosA * (pos.x - pos.x) - sinA * (pos.y - 50 - pos.y) + pos.x),
-                int(sinA * (pos.x - pos.x) + cosA * (pos.y - 50 - pos.y) + pos.y) };
-            
-            
-            lines[1] = { int(cosA * (pos.x + 30 - pos.x) - sinA * (pos.y - 40 - pos.y) + pos.x),
-                int(sinA * (pos.x + 30 - pos.x) + cosA * (pos.y - 40 - pos.y) + pos.y) };
-            
-            lines[2] = { int(cosA * (pos.x + 50 - pos.x) - sinA * (pos.y - 10 - pos.y) + pos.x),
-                int(sinA * (pos.x + 50 - pos.x) + cosA * (pos.y - 10 - pos.y) + pos.y) };
-            
-            lines[3] = { int(cosA * (pos.x + 35 - pos.x) - sinA * (pos.y + 20 - pos.y) + pos.x),
-                int(sinA * (pos.x + 35 - pos.x) + cosA * (pos.y + 20 - pos.y) + pos.y) };
-            
-            lines[4] = { int(cosA * (pos.x + 15 - pos.x) - sinA * (pos.y + 50 - pos.y) + pos.x),
-                int(sinA * (pos.x + 15 - pos.x) + cosA * (pos.y + 50 - pos.y) + pos.y) };
-            
-            lines[5] = { int(cosA * (pos.x - 10 - pos.x) - sinA * (pos.y + 45 - pos.y) + pos.x),
-                int(sinA * (pos.x - 10 - pos.x) + cosA * (pos.y + 45 - pos.y) + pos.y) };
-            
-            lines[6] = { int(cosA * (pos.x - 40 - pos.x) - sinA * (pos.y + 40 - pos.y) + pos.x),
-                int(sinA * (pos.x - 40 - pos.x) + cosA * (pos.y + 40 - pos.y) + pos.y) };
-            
-            lines[7] = { int(cosA * (pos.x - 30 - pos.x) - sinA * (pos.y - 10 - pos.y) + pos.x),
-                int(sinA * (pos.x - 30 - pos.x) + cosA * (pos.y - 10 - pos.y) + pos.y) };
-            
-            lines[8] = { int(cosA * (pos.x - 10 - pos.x) - sinA * (pos.y - 15 - pos.y) + pos.x),
-                int(sinA * (pos.x - 10 - pos.x) + cosA * (pos.y - 15 - pos.y) + pos.y) };
-            
-            lines[9] = { int(cosA * (pos.x - pos.x) - sinA * (pos.y - 50 - pos.y) + pos.x),
-                int(sinA * (pos.x - pos.x) + cosA * (pos.y - 50 - pos.y) + pos.y) };
     
-    // Render and draw 
+    float a = 1.5;
+    float ten = a*pos.w/10;
+    float fifteen = a*pos.w/6.66;
+    float twenty = a*pos.w/5;
+    float thirty = a*pos.w/3.33;
+    float thirtyfive = a*pos.w/2.85;
+    float fourty = a*pos.w/3.33;
+    float fourtyfive = a*pos.w/2.5;
+    float fifty = a*pos.w/2;
+    
+    lines[0] = {int(cosA *  1  - sinA * -fifty + pos.x),
+                int(sinA *  1  + cosA * -fifty + pos.y)};
+    
+    lines[1] = {int(cosA *  thirty - sinA * -fourty + pos.x),
+                int(sinA *  thirty + cosA * -fourty + pos.y)};
+    
+    lines[2] = {int(cosA *  fifty - sinA * -ten + pos.x),
+                int(sinA *  fifty + cosA * -ten + pos.y)};
+    
+    lines[3] = {int(cosA *  thirtyfive - sinA * twenty + pos.x),
+                int(sinA *  thirtyfive + cosA * twenty + pos.y)};
+    
+    lines[4] = {int(cosA *  fifteen - sinA * fifty + pos.x),
+                int(sinA *  fifteen + cosA * fifty + pos.y)};
+    
+    lines[5] = {int(cosA * -ten - sinA * fourtyfive + pos.x),
+                int(sinA * -ten + cosA * fourtyfive + pos.y)};
+    
+    lines[6] = {int(cosA * -fourty - sinA * fourty + pos.x),
+                int(sinA * -fourty + cosA * fourty + pos.y)};
+    
+    lines[7] = {int(cosA * -thirty - sinA * -ten + pos.x),
+                int(sinA * -thirty + cosA * -ten + pos.y)};
+    
+    lines[8] = {int(cosA * -ten - sinA * -fifteen + pos.x),
+                int(sinA * -ten + cosA * -fifteen + pos.y)};
+    
+    lines[9] = {int(cosA *  1  - sinA * -fifty + pos.x),
+                int(sinA *  1  + cosA * -fifty + pos.y)};
+    
+    // Render and draw
     SDL_SetRenderDrawColor(rend, 255,255,255, 255);
     SDL_RenderDrawLines(rend, lines, 10);
     SDL_RenderDrawRect(rend, &collision_rect);
