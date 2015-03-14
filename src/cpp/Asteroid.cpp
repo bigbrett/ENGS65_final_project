@@ -33,7 +33,7 @@ void Asteroid::takeDmg(int dmg, Asteroid_GameObject_Type type)
 
 list<GameObject*> * Asteroid::destroy()
 {
-    list<GameObject*> *temp = new list<GameObject*>();
+    list<GameObject*> *temp = new list<GameObject*>;
     Asteroid_Size newSize;
     if (size == AS_LARGE) newSize = AS_MED;
     else if (size == AS_MED) newSize = AS_SMALL;

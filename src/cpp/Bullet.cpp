@@ -24,7 +24,7 @@ Bullet::Bullet(const Bullet& other) : GameObject(other)
 void Bullet::move(){
     collision_rect.x += x_velocity;
     collision_rect.y += y_velocity;
-    distance_traveled += sqrt(x_velocity^2 + y_velocity^2);
+    distance_traveled += sqrt(pow(x_velocity, 2) + pow(y_velocity,2));
     
     if (distance_traveled >= BULLET_MAX_DISTANCE) {
         health = 0;
