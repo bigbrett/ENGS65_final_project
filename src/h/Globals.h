@@ -31,7 +31,7 @@
 #define SHIP_DEFAULT_SPEED      3
 
 #define ASTEROID_DEFAULT_SIZE   AS_LARGE
-#define ASTEROID_BASE_SIZE      30
+#define ASTEROID_BASE_SIZE      25
 #define ASTEROID_BASE_HEALTH    1
 #define ASTEROID_BASE_DAMAGE    2
 #define ASTEROID_MAX_SPEED      3  // To scale speed based on size: speed/size
