@@ -25,6 +25,7 @@
 #include "SDLDriver.h"
 #include "Renderer.h"
 #include "Window.h"
+#include "TextRenderer.h"
 #include "Globals.h"
 
 

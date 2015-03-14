@@ -42,6 +42,8 @@ Game::Game(int startingNumAsteroids, int startingLives, int startingScore)
 
     keyboardState = SDL_GetKeyboardState(NULL);
     
+    TextRenderer::initText();
+    
 	this->renderer = new Renderer(this->window.gWindow);
 	this->play();
 }
@@ -50,6 +52,7 @@ Game::Game(int startingNumAsteroids, int startingLives, int startingScore)
 Game::~Game()
 {
     delete this->renderer;
+    TextRenderer::quitText();
 }
 
 
@@ -271,6 +274,16 @@ bool Game::drawGame()
 	else
 		flag = false;
     
+    TextRenderer::printLives(renderer->gRenderer, ship->getLives());
+    
+    if(ship->getLives()<=0)
+    {
+        TextRenderer::printGameOverLose(renderer->gRenderer);
+    }
+    else if(Asteroid::getNumAsteroidsRemaining() <= 0)
+    {
+        TextRenderer::printGameOverWin(renderer->gRenderer);
+    }
     renderer->present();
 
 	return flag;
