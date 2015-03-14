@@ -21,6 +21,7 @@ enum Asteroid_Size {AS_SMALL=1, AS_MED, AS_LARGE};
 
 class Asteroid: public GameObject
 {
+    static int numAsteroids;
 	Asteroid_Size size;
     void trace(void);
     
@@ -32,8 +33,12 @@ public:
     /* Overloaded Functions */
     void takeDmg(int dmg, Asteroid_GameObject_Type type);
     list<GameObject*> * destroy();
-    
     void draw (SDL_Renderer* rend);
+    
+    static int getNumAsteroidsRemaining()
+    {
+        return numAsteroids;
+    }
     
 };
 

@@ -7,6 +7,7 @@
 
 #include "Asteroid.h"
 
+int Asteroid::numAsteroids = 0;
 
 Asteroid::Asteroid(Asteroid_Size _size, SDL_Point location, int _x_velocity,
                    int _y_velocity)
@@ -17,11 +18,13 @@ Asteroid::Asteroid(Asteroid_Size _size, SDL_Point location, int _x_velocity,
 {
     // Class Specific Variables
     size = _size;
+    numAsteroids++;
 }
 
 Asteroid::Asteroid(const Asteroid& other) : GameObject(other)
 {
     size = other.size;
+    numAsteroids--;
 }
 
 void Asteroid::takeDmg(int dmg, Asteroid_GameObject_Type type)
