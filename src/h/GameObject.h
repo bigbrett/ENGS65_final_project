@@ -82,7 +82,7 @@ public:
     /* Standard functions */
     
     // See if the object is destroyed
-    bool isDestroyed()
+    virtual bool isDestroyed()
     {
         return health<=0;
     }

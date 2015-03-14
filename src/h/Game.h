@@ -44,7 +44,6 @@ private:
     
     list<GameObject*> objectsInPlay; 	// A DLL to hold all the GameObjects
     Ship *ship;                         // So we can always directly access ship
-    int lives;                          // Number of lives remaining
     int score;                          // Player current score
     
     
