@@ -65,10 +65,10 @@ list<GameObject*> * Asteroid::destroy()
     Asteroid *a4 = new Asteroid(newSize, p, x_velocity * size/newSize - 1,
                                 y_velocity * size/newSize);
     
-    temp->push_front((GameObject*) a1);
-    temp->push_front((GameObject*) a2);
-    temp->push_front((GameObject*) a3);
-    temp->push_front((GameObject*) a4);
+    temp->push_front(a1);
+    temp->push_front(a2);
+    temp->push_front(a3);
+    temp->push_front(a4);
     
     return temp;
 }

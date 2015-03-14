@@ -23,17 +23,18 @@ using namespace std;
 class Ship: public GameObject
 {
 private:
-	int shield;					// Damage reduction from collisions
+    int lives;
+    int shield;					// Damage reduction from collisions
     bool accelerate;
     
 public:
-	Ship();
+	Ship(int startingLives);
     Ship(const Ship& other);
     virtual ~Ship() {} // Nothing to destroy
 
 	/* Overloaded Functions */
 	void takeDmg(int dmg, Asteroid_GameObject_Type type);
-    list<GameObject*> * destroy();
+    bool isDestroyed();
     void draw(SDL_Renderer* rend);
     
     /* Ship Specific Functions */
@@ -52,47 +53,14 @@ public:
     // Set whether the ship should be accelerating or not
     void setAccelerate(bool accel);
     
+    // Get remaining number of lives
+    int getLives()
+    {
+        return lives;
+    }
+    
     // Handle a keyboard arrow press event
 //    void handleKeyboardEvent(SDL_Event &e);
 };
-
-
-
-/*
-<<<<<<< HEAD
-=======
-
->>>>>>> ebd48a8760013fe5207eaa2f90a0f45408f6a5c8
-//The dot that will move around on the screen
-class Dot
-{
-public:
-    //The dimensions of the dot
-    static const int DOT_WIDTH = 20;
-    static const int DOT_HEIGHT = 20;
-    
-    //Maximum axis velocity of the dot
-    static const int DOT_VEL = 10;
-    
-    //Initializes the variables
-    Dot();
-    
-    //Takes key presses and adjusts the dot's velocity
-    void handleEvent( SDL_Event& e );
-    
-    //Moves the dot
-    void move();
-    
-    //Shows the dot on the screen
-    void render();
-    
-private:
-    //The X and Y offsets of the dot
-    int mPosX, mPosY;
-    
-    //The velocity of the dot
-    int mVelX, mVelY;
-};
-*/
 
 #endif /* SHIP_H_ */
