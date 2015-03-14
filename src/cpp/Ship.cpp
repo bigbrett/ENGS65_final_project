@@ -47,13 +47,14 @@ list<GameObject*> * Ship::destroy()
 
 Bullet * Ship::shoot()
 {
-    int delX = collision_rect.w * cos(rotation);
-    int delY = collision_rect.h * sin(rotation);
     SDL_Point loc;
-    loc.x = collision_rect.x + delX;
-    loc.y = collision_rect.y + delY;
-    int x_vel = (x_velocity / x_velocity) * BULLET_DEFAULT_SPEED + x_velocity;
-    int y_vel = (y_velocity / y_velocity) * BULLET_DEFAULT_SPEED + y_velocity;
+    loc.x = collision_rect.x + collision_rect.w / 2;
+    loc.y = collision_rect.y + collision_rect.h / 2;
+    loc.x = int(cos(rotation) * collision_rect.w + loc.x);
+    loc.y = int(-sin(rotation) * collision_rect.h + loc.y);
+    
+    int x_vel = cos(rotation) * BULLET_DEFAULT_SPEED;
+    int y_vel = -sin(rotation) * BULLET_DEFAULT_SPEED;
     
     Bullet *newBullet = new Bullet(loc, x_vel , y_vel, BULLET_DEFAULT_DAMAGE);
     return newBullet;

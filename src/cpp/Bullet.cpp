@@ -30,3 +30,9 @@ void Bullet::move(){
         health = 0;
     }
 }
+
+void Bullet::draw(SDL_Renderer *rend)
+{
+    SDL_SetRenderDrawColor(rend, 0,255,255, SDL_ALPHA_OPAQUE);
+    SDL_RenderFillRect(rend, &collision_rect);
+}

@@ -214,7 +214,15 @@ bool Game::updateState()
 {
     bool flag = true;
     
-    ship->move();
+    list <GameObject *>::iterator in_play_iter;
+    if (!objectsInPlay.empty())
+    {
+        for (in_play_iter = objectsInPlay.begin();
+             in_play_iter != objectsInPlay.end(); in_play_iter++)
+        {
+            (*in_play_iter)->move();
+        }
+    }
     
     return flag;
 }
@@ -228,8 +236,11 @@ bool Game::drawGame()
     
     renderer->clear();
 	list <GameObject *>::iterator in_play_iter;
-	if (!objectsInPlay.empty()) {
-		for (in_play_iter = objectsInPlay.begin(); in_play_iter != objectsInPlay.end(); in_play_iter++) {
+	if (!objectsInPlay.empty())
+    {
+		for (in_play_iter = objectsInPlay.begin();
+             in_play_iter != objectsInPlay.end(); in_play_iter++)
+        {
 			(*in_play_iter)->draw(renderer->gRenderer);
 		}
 	}
@@ -274,6 +285,8 @@ void Game::handleKeyboard()
     if(keyboardState[SDL_SCANCODE_SPACE])
     {
         cout << "KeyDown SPACEBAR" << endl;
+        Bullet *newBullet = ship->shoot();
+        objectsInPlay.push_back(newBullet);
     }
     
     checkKeyboard = false;
