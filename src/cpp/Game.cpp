@@ -37,7 +37,6 @@ Uint32 keyboardCallbackFunction(Uint32 interval, void *param);
 Game::Game(int startingNumAsteroids, int startingLives, int startingScore)
 {
 	// Initialize player related game variables
-    lives = startingLives;
 	score = startingScore;
     
     // Initialize keyboard polling variables
@@ -52,7 +51,7 @@ Game::Game(int startingNumAsteroids, int startingLives, int startingScore)
 	uniform_int_distribution <int> v_gen(1, ASTEROID_MAX_SPEED);
 
 	// Put the ship into the list
-    ship = new Ship();
+    ship = new Ship(startingLives);
 	objectsInPlay.push_front(ship);
     
 	// Add the asteroids in

@@ -7,7 +7,7 @@
 
 #include "Ship.h"
 
-Ship::Ship()
+Ship::Ship(int numLives)
     : GameObject(AGT_SHIP, SDL_Point (),
                  SHIP_DEFAULT_SIZE, SHIP_DEFAULT_SIZE, SHIP_DEFAULT_ROTATION,
                  0, 0, SHIP_DEFAULT_HEALTH, 0)
@@ -16,6 +16,7 @@ Ship::Ship()
     collision_rect.y = SHIP_DEFAULT_Y_LOCATION;
     
     // Class Specific Variables
+    lives = numLives;
     shield = 0;
     accelerate = false;
 }
@@ -37,13 +38,27 @@ void Ship::takeDmg(int dmg, Asteroid_GameObject_Type type)
     health -= dmg;
 }
 
-list<GameObject*> * Ship::destroy()
+bool Ship::isDestroyed()
 {
-    Ship tempShip(*this);
-    list<GameObject*> *tempList = new list<GameObject*>;
-    tempList->push_front((GameObject*) &tempShip);
-    return tempList;
+    if (health<=0) {
+        lives--;
+        collision_rect.x = SHIP_DEFAULT_X_LOCATION;
+        collision_rect.y = SHIP_DEFAULT_Y_LOCATION;
+        x_velocity = 0;
+        y_velocity = 0;
+        rotation = SHIP_DEFAULT_ROTATION * ANGLE_INC;
+        health = SHIP_DEFAULT_HEALTH;
+    }
+    return false;
 }
+
+//list<GameObject*> * Ship::destroy()
+//{
+//    Ship tempShip(*this);
+//    list<GameObject*> *tempList = new list<GameObject*>;
+//    tempList->push_front((GameObject*) &tempShip);
+//    return tempList;
+//}
 
 Bullet * Ship::shoot()
 {
@@ -59,32 +74,6 @@ Bullet * Ship::shoot()
     Bullet *newBullet = new Bullet(loc, x_vel , y_vel, BULLET_DEFAULT_DAMAGE);
     return newBullet;
 }
-
-//void Ship::handleKeyboardEvent(SDL_Event &e){
-//    if(e.type == SDL_KEYDOWN && e.key.repeat == 0)
-//    {
-//        switch(e.key.keysym.sym)
-//        {
-//            case SDLK_UP: y_velocity -= DOT_VEL; break;
-//            case SDLK_DOWN: y_velocity += DOT_VEL; break;
-//            case SDLK_LEFT: x_velocity -= DOT_VEL; break;
-//            case SDLK_RIGHT: x_velocity += DOT_VEL; break;
-//            default: break;
-//        }
-//    }
-//    else if(e.type == SDL_KEYUP && e.key.repeat == 0)
-//    {
-//        switch(e.key.keysym.sym)
-//        {
-//            case SDLK_UP: y_velocity = 0; break;
-//            case SDLK_DOWN: y_velocity = 0; break;
-//            case SDLK_LEFT: x_velocity = 0; break;
-//            case SDLK_RIGHT: x_velocity = 0; break;
-//            default: break;
-//        }
-//    }
-//}
-
 
 void Ship::draw(SDL_Renderer* rend)
 {
