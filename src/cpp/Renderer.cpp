@@ -2,7 +2,6 @@
 //  Renderer.cpp
 //  Test
 //
-//  Based on code written by
 //
 
 #include "Renderer.h"

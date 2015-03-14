@@ -10,6 +10,7 @@
 
 list<Bullet*> * ShipGun::shoot(SDL_Point point, float trajectory)
 {
+    // Create and shoot a single bullet
     int x_vel = cos(trajectory) * BULLET_DEFAULT_SPEED;
     int y_vel = -sin(trajectory) * BULLET_DEFAULT_SPEED;
     

@@ -29,7 +29,7 @@ Asteroid::Asteroid(const Asteroid& other) : GameObject(other)
 void Asteroid::takeDmg(int dmg, Asteroid_GameObject_Type type)
 {
     if(type == AGT_SHIP) health = 0;    // Make sure the ship kills the asteroid
-    else if(type == AGT_ASTEROID)   {} // Do nothing if asteroids collide
+    else if(type == AGT_ASTEROID);      // Do nothing if asteroids collide
     else health -= dmg;
 }
 
@@ -49,23 +49,23 @@ list<GameObject*> * Asteroid::destroy()
     
     p.x = collision_rect.x;
     p.y = collision_rect.y + offset;
-    Asteroid *a1 = new Asteroid(newSize, p, x_velocity * size/newSize,
-                                y_velocity * size/newSize + 1);
+    Asteroid *a1 = new Asteroid(newSize, p, x_velocity,
+                                y_velocity + 1);
     
     p.x = collision_rect.x;
     p.y = collision_rect.y - offset;
-    Asteroid *a2 = new Asteroid(newSize, p, x_velocity * size/newSize,
-                                y_velocity * size/newSize - 1);
+    Asteroid *a2 = new Asteroid(newSize, p, x_velocity,
+                                y_velocity - 1);
     
     p.x = collision_rect.x;
     p.y = collision_rect.y - offset;
-    Asteroid *a3 = new Asteroid(newSize, p, x_velocity * size/newSize + 1,
-                                y_velocity * size/newSize);
+    Asteroid *a3 = new Asteroid(newSize, p, x_velocity + 1,
+                                y_velocity);
     
     p.x = collision_rect.x;
     p.y = collision_rect.y - offset;
-    Asteroid *a4 = new Asteroid(newSize, p, x_velocity * size/newSize - 1,
-                                y_velocity * size/newSize);
+    Asteroid *a4 = new Asteroid(newSize, p, x_velocity - 1,
+                                y_velocity);
     
     temp->push_front(a1);
     temp->push_front(a2);

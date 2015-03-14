@@ -2,7 +2,6 @@
 //  Window.cpp
 //  Asteroids
 //
-//  Based on code written by
 //
 
 #include "Window.h"

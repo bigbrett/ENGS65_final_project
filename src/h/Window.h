@@ -3,7 +3,6 @@
 //  Asteroids
 //
 //  SDL Window class for asteroids game
-//  Based on code written by 
 //
 
 #ifndef __Asteroids__Window__

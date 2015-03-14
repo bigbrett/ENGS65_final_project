@@ -2,7 +2,6 @@
 //  Renderer.h
 //  Test
 //
-//  Based on code written by 
 //
 
 #ifndef __Renderer__

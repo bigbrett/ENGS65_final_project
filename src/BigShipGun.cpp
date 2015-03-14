@@ -10,7 +10,11 @@
 
 list<Bullet*> * BigShipGun::shoot(SDL_Point point, float trajectory)
 {
+    
     list<Bullet*> *temp = new list<Bullet*>;
+    
+    // Creates 3 bullets, that spray out around the trajectory given
+    
     for (int i = -1; i <= 1; i++)
     {
         int x_vel = cos(trajectory + ANGLE_INC * i) * BULLET_DEFAULT_SPEED;

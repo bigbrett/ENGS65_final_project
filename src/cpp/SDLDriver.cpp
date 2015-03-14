@@ -2,7 +2,6 @@
 //  SDLDriver.cpp
 //
 //  A wrapper class that encapsulates an SDL Graphics Application
-//  Based on code written by
 //
 
 #include "SDLDriver.h"

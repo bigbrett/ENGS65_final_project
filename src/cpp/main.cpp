@@ -1,14 +1,37 @@
-/*This source code copyrighted by Lazy Foo' Productions (2004-2015)
- and may not be redistributed without written permission.*/
+// Main.cpp
+// By Dan Berman and Brett Nicholas
 
-//Using SDL, SDL_image, standard IO, and strings
+// Contains just the main function:
+// Creates an instance of Game, which runs the full game
+
+// Requires SDL2 and SDL2_ttf libraries in addition to standard C++ libraries
+// and program code files.
+
 #include <SDL2/SDL.h>
-#include <SDL2_image/SDL_image.h>
-#include <stdio.h>
-#include <string>
+#include <SDL2_ttf/SDL_ttf.h>
 
-#include "Ship.h"
+#include <iostream>
+#include <string>
+#include <sstream>
+#include <map>
+#include <cstdlib>
+#include <ctime>
+#include <list>
+#include <random>
+#include <chrono>
+
 #include "Game.h"
+#include "Globals.h"
+#include "GameObject.h"
+#include "SDLDriver.h"
+#include "Renderer.h"
+#include "Window.h"
+#include "TextRenderer.h"
+#include "Ship.h"
+#include "Asteroid.h"
+#include "Bullet.h"
+#include "ShipGun.h"
+#include "BigShipGun.h"
 
 
 

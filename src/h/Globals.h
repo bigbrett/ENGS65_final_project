@@ -37,9 +37,8 @@
 #define ASTEROID_BASE_SIZE      25
 #define ASTEROID_BASE_HEALTH    1
 #define ASTEROID_BASE_DAMAGE    2
-#define ASTEROID_MAX_SPEED      3  // To scale speed based on size: speed/size
-// Allows for speeds 0-3 for large, 0-5 for
-// medium and 0-11 for small
+#define ASTEROID_MAX_SPEED      2
+#define ASTEROID_MIN_SPEED      0
 
 #define BULLET_DEFAULT_DAMAGE   1
 #define BULLET_DEFAULT_SIZE     3

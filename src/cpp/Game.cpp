@@ -23,7 +23,15 @@ Game::Game(int startingNumAsteroids, int startingLives, int startingScore)
 	default_random_engine generator;
     uniform_int_distribution <int> x_gen(0, GAME_WIDTH);
 	uniform_int_distribution <int> y_gen(0, GAME_HEIGHT);
-	uniform_int_distribution <int> v_gen(1, ASTEROID_MAX_SPEED);
+	uniform_int_distribution <int> v_gen(ASTEROID_MIN_SPEED, ASTEROID_MAX_SPEED);
+    
+    // Seed code from:
+    // http://www.cplusplus.com/reference/random/linear_congruential_engine/seed/
+    typedef chrono::high_resolution_clock myclock;
+    myclock::time_point beginning = myclock::now();
+    myclock::duration d = myclock::now() - beginning;
+    unsigned seed = d.count();
+    generator.seed(seed);
 
 	// Put the ship into the list
     ship = new Ship(startingLives);
@@ -35,8 +43,7 @@ Game::Game(int startingNumAsteroids, int startingLives, int startingScore)
 		p.x = x_gen(generator);
 		p.y = y_gen(generator);
 		Asteroid *temp = new Asteroid(ASTEROID_DEFAULT_SIZE, p,
-		                              v_gen(generator) / ASTEROID_DEFAULT_SIZE,
-		                              v_gen(generator) / ASTEROID_DEFAULT_SIZE);
+		                              v_gen(generator), v_gen(generator));
 		objectsInPlay.push_back(temp);
 	}
 
@@ -59,7 +66,8 @@ Game::~Game()
 /* Main Game loop */
 void Game::play()
 {
-    cout << "starting game!!" << endl;
+    cout << "Starting Game!!" << endl;
+    
     while (this->graphicsDriver.isRunning())
     {
         
@@ -80,6 +88,7 @@ void Game::play()
         // Draw the game
         this->drawGame();
     }
+    cout << "Thanks for playing!" << endl;
 }
 
 
@@ -113,45 +122,6 @@ void Game::handleEvents()
                 cout << "MOUSE RETURNED!" << endl;
             }
         }
-        
-        // Handle KeyDown event for U/D/R/L keys
-//        else if (eventQ.type == SDL_KEYDOWN)
-//        {
-//            switch (eventQ.key.keysym.scancode) {
-//                    
-//                    // Handle up key
-//                case SDL_SCANCODE_UP:
-//                    cout << "KeyDown UP!" << endl;
-//                    ship->setAccelerate(true);
-//                    cout << SDL_GetTicks() << endl;
-//                    break;
-//                    
-//                    // Handle down key
-//                case SDL_SCANCODE_DOWN:
-//                    cout << "KeyDown DOWN!" << endl;
-//                    break;
-//                    
-//                    // Handle left key
-//                case SDL_SCANCODE_LEFT:
-//                    cout << "KeyDown LEFT!" << endl;
-//                    ship->rotateCCW();
-//                    break;
-//                    
-//                    // Handle right key
-//                case SDL_SCANCODE_RIGHT:
-//                    cout << "KeyDown RIGHT!" << endl;
-//                    ship->rotateCW();
-//                    break;
-//                    
-//                    // Handle space
-//                case SDL_SCANCODE_SPACE:
-//                    cout << "KeyDown SPACEBAR" << endl;
-//                    break;
-//                    
-//                default:
-//                    break;
-//            } // switch
-//        }
         
         // Handle KeyUp event for U/D/R/L keys
         else if (eventQ.type == SDL_KEYUP)
@@ -301,34 +271,29 @@ void Game::handleKeyboard()
     // Handle up key
     if(keyboardState[SDL_SCANCODE_UP])
     {
-        cout << "KeyDown UP!" << endl;
         ship->setAccelerate(true);
     }
     
     // Handle down key
     if(keyboardState[SDL_SCANCODE_DOWN])
     {
-        cout << "KeyDown DOWN!" << endl;
     }
     
     // Handle left key
     if(keyboardState[SDL_SCANCODE_LEFT])
     {
-        cout << "KeyDown LEFT!" << endl;
         ship->rotateCCW();
     }
     
     // Handle right key
     if(keyboardState[SDL_SCANCODE_RIGHT])
     {
-        cout << "KeyDown RIGHT!" << endl;
         ship->rotateCW();
     }
     
     // Handle space
     if(keyboardState[SDL_SCANCODE_SPACE])
     {
-        cout << "KeyDown SPACEBAR" << endl;
         list<Bullet*> *newBullets = ship->shoot();
         list <Bullet*>::iterator in_play_iter;
         if (!(newBullets->empty()))
