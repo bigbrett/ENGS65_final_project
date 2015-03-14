@@ -16,6 +16,7 @@
 #include <string>
 #include <list>
 #include <cmath>
+
 #include "Globals.h"
 
 using namespace std;
@@ -40,11 +41,30 @@ protected:
     
     //Scene textures
   //  LTexture gTexture;
-    
-    // Check for moving offscreen
-    void movedOffScreen();
-    
-    
+
+  // Check for moving offscreen
+  void movedOffScreen()
+  {
+	  // Check against having moved off left
+	  if (collision_rect.x + collision_rect.w < 0) {
+		  collision_rect.x = collision_rect.x + GAME_WIDTH;
+	  }
+
+	  // Check against having moved off right
+	  if (collision_rect.x > GAME_WIDTH) {
+		  collision_rect.x = GAME_WIDTH - collision_rect.x;
+	  }
+
+	  // Check against having moved off top
+	  if (collision_rect.y + collision_rect.h < 0) {
+		  collision_rect.y = collision_rect.y + GAME_HEIGHT;
+	  }
+
+	  // Check against having moved off bottom
+	  if (collision_rect.y > GAME_HEIGHT) {
+		  collision_rect.y = GAME_HEIGHT - collision_rect.y;
+	  }
+  }
 public:
     /* Constructors and Destructor */
     GameObject(Asteroid_GameObject_Type type, SDL_Point location, int height,
@@ -61,7 +81,7 @@ public:
         y_velocity = _y_velocity;
         health = _health;
         damage = _damage;
-    };
+    }
     
     GameObject(const GameObject& other) {
         objectType = other.objectType;
@@ -86,24 +106,24 @@ public:
         collision_rect.x += x_velocity;
         collision_rect.y += y_velocity;
         movedOffScreen();
-    };
+    }
 
 	// Draw the object onto the game window surface
 	// Doesn't do anything in this class
-    virtual void draw(SDL_Renderer* rend){};
+    virtual void draw(SDL_Renderer* rend){}
 
 	// Damage the object from a collision
 	virtual void takeDmg(int dmg, Asteroid_GameObject_Type type)
     {
         health -= dmg;
-    };
+    }
     
     // Destroy the object; returns a list of new objects that replace it
     virtual list<GameObject*> * destroy()
     {
         list<GameObject*> *temp = new list<GameObject*>();
         return temp;
-    };
+    }
     
     /* Standard functions */
     
@@ -111,45 +131,19 @@ public:
     bool isDestroyed()
     {
         return health<=0;
-    };
-
+    }
+    
 	/* Getters */
 	Asteroid_GameObject_Type getObjectType()
     {
         return objectType;
-    };
+    }
     
 	int getDamage()
     {
         return damage;
-    };
+    }
 };
 
-inline void GameObject::movedOffScreen()
-{
-    // Check against having moved off left
-    if(collision_rect.x + collision_rect.w < 0)
-    {
-        collision_rect.x = collision_rect.x + GAME_WIDTH;
-    }
-    
-    // Check against having moved off right
-    if (collision_rect.x > GAME_WIDTH)
-    {
-        collision_rect.x = GAME_WIDTH - collision_rect.x;
-    }
-    
-    // Check against having moved off top
-    if (collision_rect.y + collision_rect.h < 0)
-    {
-        collision_rect.y = collision_rect.y + GAME_HEIGHT;
-    }
-    
-    // Check against having moved off bottom
-    if (collision_rect.y > GAME_HEIGHT)
-    {
-        collision_rect.y = GAME_HEIGHT - collision_rect.y;
-    }
-}
 
 #endif /* GAMEOBJECT_H_ */
