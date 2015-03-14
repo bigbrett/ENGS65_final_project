@@ -120,5 +120,6 @@ void Asteroid::draw(SDL_Renderer* rend)
     // Render and draw 
     SDL_SetRenderDrawColor(rend, 255,255,255, 255);
     SDL_RenderDrawLines(rend, lines, 10);
+    SDL_RenderDrawRect(rend, &collision_rect);
 }
 

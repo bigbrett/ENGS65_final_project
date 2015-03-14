@@ -95,21 +95,22 @@ void Ship::draw(SDL_Renderer* rend)
     SDL_Rect pos = collision_rect;
     pos.x = pos.x + pos.w / 2;  // Move coordinates to center of the rectangle
     pos.y = pos.y + pos.h / 2;
-    ship[0] = {int(cosA * pos.w + pos.x), int(-sinA * pos.h + pos.y)};
+    ship[0] = {int(cosA * pos.w / 2 + pos.x), int(-sinA * pos.h / 2 + pos.y)};
     
-    ship[1] = {int(-cosA * pos.w + sinA * pos.h + pos.x),
-            int(sinA * pos.h + cosA * pos.w + pos.y)};
+    ship[1] = {int(-cosA * pos.w / 2 + sinA * pos.h / 2 + pos.x),
+            int(sinA * pos.h / 2 + cosA * pos.w / 2 + pos.y)};
     
-    ship[2] = {int(-cosA * pos.w / 2 + pos.x), int(sinA * pos.h / 2 + pos.y)};
+    ship[2] = {int(-cosA * pos.w / 4 + pos.x), int(sinA * pos.h / 4 + pos.y)};
     
-    ship[3] = {int(-cosA * pos.w - sinA * pos.h + pos.x),
-        int(sinA * pos.h - cosA * pos.w + pos.y)};
+    ship[3] = {int(-cosA * pos.w / 2 - sinA * pos.h / 2 + pos.x),
+        int(sinA * pos.h / 2 - cosA * pos.w / 2 + pos.y)};
     
-    ship[4] = {int(cosA * pos.w + pos.x), int(-sinA * pos.h + pos.y)};
+    ship[4] = {int(cosA * pos.w / 2 + pos.x), int(-sinA * pos.h / 2 + pos.y)};
     
     
     SDL_SetRenderDrawColor(rend, 255,255,255, 255);
     SDL_RenderDrawLines(rend, ship, 5);
+    SDL_RenderDrawRect(rend, &collision_rect);
 }
 
 void Ship::rotateCW()
