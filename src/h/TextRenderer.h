@@ -12,6 +12,8 @@
 #include <sstream>
 #include <SDL2/SDL.h>
 #include <SDL2_ttf/SDL_ttf.h>
+#include <iostream>
+
 #include "Globals.h"
 
 using namespace std;
