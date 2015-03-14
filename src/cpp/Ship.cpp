@@ -40,7 +40,7 @@ void Ship::takeDmg(int dmg, Asteroid_GameObject_Type type)
 list<GameObject*> * Ship::destroy()
 {
     Ship tempShip(*this);
-    list<GameObject*> *tempList = new list<GameObject* >();
+    list<GameObject*> *tempList = new list<GameObject*>;
     tempList->push_front((GameObject*) &tempShip);
     return tempList;
 }

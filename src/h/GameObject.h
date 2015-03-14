@@ -76,7 +76,7 @@ public:
     // Destroy the object; returns a list of new objects that replace it
     virtual list<GameObject*> * destroy()
     {
-        list<GameObject*> *temp = new list<GameObject*>();
+        list<GameObject*> *temp = new list<GameObject*>;
         return temp;
     }
     
@@ -98,6 +98,8 @@ public:
     {
         return damage;
     }
+    
+    static void collision(GameObject *obj1, GameObject *obj2);
 };
 
 #endif /* GAMEOBJECT_H_ */

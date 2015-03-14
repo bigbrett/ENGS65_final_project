@@ -213,14 +213,65 @@ void Game::handleEvents()
 bool Game::updateState()
 {
     bool flag = true;
-    
     list <GameObject *>::iterator in_play_iter;
+    list <GameObject *>::iterator in_play_iter_2;
+    
+    // Make everything move
     if (!objectsInPlay.empty())
     {
         for (in_play_iter = objectsInPlay.begin();
              in_play_iter != objectsInPlay.end(); in_play_iter++)
         {
             (*in_play_iter)->move();
+        }
+    }
+    else
+    {
+        flag = false;
+    }
+    
+    // Check for collisions
+    if (!objectsInPlay.empty())
+    {
+        for (in_play_iter = objectsInPlay.begin();
+             in_play_iter != objectsInPlay.end(); in_play_iter++)
+        {
+            for (in_play_iter_2 = in_play_iter;
+                 in_play_iter_2 != objectsInPlay.end(); in_play_iter_2++)
+            {
+                if(in_play_iter != in_play_iter_2)
+                {
+                GameObject::collision(*in_play_iter, *in_play_iter_2);
+                }
+            }
+        }
+    }
+    else
+    {
+        flag = false;
+    }
+    
+    // Check for dead objects, remove them from play
+    if(!objectsInPlay.empty())
+    {
+        for (in_play_iter = objectsInPlay.begin();
+             in_play_iter != objectsInPlay.end(); in_play_iter++)
+        {
+            if((*in_play_iter)->isDestroyed())
+            {
+                list<GameObject*> *temp = (*in_play_iter)->destroy();
+                if(!(temp->empty()))
+                {
+                    for (in_play_iter_2 = temp->begin();
+                         in_play_iter_2 != temp->end(); in_play_iter_2++)
+                    {
+                        objectsInPlay.push_back((*in_play_iter_2));
+                    }
+                }
+                delete temp;
+                delete (*in_play_iter); // delete the data at the location
+                objectsInPlay.remove((*in_play_iter));  // remove the pointer
+            }
         }
     }
     
