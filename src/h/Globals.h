@@ -2,17 +2,19 @@
 //  Globals.h
 //  Asteroids
 //
-//  Created by Brett Nicholas on 3/12/15.
+//  Created by Brett Nicholas
 //  Copyright (c) 2015 Brett Nicholas. All rights reserved.
 //
 
 #ifndef Asteroids_Globals_h
 #define Asteroids_Globals_h
 
-#define GAME_WIDTH  640
-#define GAME_HEIGHT 480
+#define GAME_WIDTH  1080
+#define GAME_HEIGHT 720
+#define KEYBOARD_TIMER_INTERVAL   100
 
 #define PI 3.14159
+#define ANGLE_INC 2*PI/AD_SIZE
 
 #define OBJ_DEFAULT_LOCATION    -1
 #define OBJ_DEFAULT_SIZE        -1
@@ -23,10 +25,10 @@
 
 #define SHIP_DEFAULT_X_LOCATION (GAME_WIDTH - SHIP_DEFAULT_SIZE) / 2
 #define SHIP_DEFAULT_Y_LOCATION (GAME_HEIGHT - SHIP_DEFAULT_SIZE) / 2
-#define SHIP_DEFAULT_SIZE       5
+#define SHIP_DEFAULT_ROTATION   AD_N
+#define SHIP_DEFAULT_SIZE       10
 #define SHIP_DEFAULT_HEALTH     5
-#define DOT_VEL 10      // FOR INTIAL SHIP EVENT HANDLING TESTING PURPOSES
-
+#define SHIP_DEFAULT_SPEED      5
 
 #define ASTEROID_DEFAULT_SIZE   AS_LARGE
 #define ASTEROID_BASE_SIZE      1
@@ -37,10 +39,10 @@
 // medium and 0-11 for small
 
 #define BULLET_DEFAULT_DAMAGE   1
-#define BULLET_DEFAULT_SIZE     1
+#define BULLET_DEFAULT_SIZE     3
 #define BULLET_DEFAULT_HEALTH   1
-#define BULLET_DEFAULT_SPEED    3
-#define BULLET_MAX_DISTANCE     100
+#define BULLET_DEFAULT_SPEED    10
+#define BULLET_MAX_DISTANCE     400
 
 #define DEFAULT_NUM_ASTEROIDS 10
 #define DEFAULT_NUM_LIVES 3
@@ -52,8 +54,8 @@ enum Asteroid_GameObject_Type
 
 enum Asteroid_Direction
 {
-    AD_N, AD_NNE, AD_NE, AD_ENE, AD_E, AD_ESE, AD_SE, AD_SSE, AD_S, AD_SSW,
-    AD_SW, AD_WSW, AD_W, AD_WNW, AD_NW, AD_NNW, AD_SIZE
+    AD_E, AD_ENE, AD_NE, AD_NNE, AD_N, AD_NNW, AD_NW, AD_WNW, AD_W, AD_WSW,
+    AD_SW, AD_SSW, AD_S, AD_SSE, AD_SE, AD_ESE, AD_SIZE
 };
 
 

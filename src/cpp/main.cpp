@@ -6,6 +6,7 @@
 #include <SDL2_image/SDL_image.h>
 #include <stdio.h>
 #include <string>
+
 #include "Ship.h"
 #include "Game.h"
 

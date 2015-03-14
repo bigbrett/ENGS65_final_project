@@ -26,13 +26,14 @@ class GameObject
 protected:
 	Asteroid_GameObject_Type objectType;	// Set to the type of GameObject
     SDL_Rect collision_rect;                // Object's collision rectangle
-	Asteroid_Direction rotation;			// Rotation of the object,
+	float rotation;                         // Rotation of the object,
                                             // AD_N = 0 degrees of rotation
 	int x_velocity;                         // +/- x speed
     int y_velocity;                         // +/- y speed
 	int health;								// Current health
 	int damage;								// Base damage the object does
 
+<<<<<<< HEAD
     //The window we'll be rendering to
     SDL_Window* gWindow = NULL;
     
@@ -65,10 +66,18 @@ protected:
 		  collision_rect.y = GAME_HEIGHT - collision_rect.y;
 	  }
   }
+=======
+    
+    // Check for moving offscreen
+    void movedOffScreen();
+    
+    
+>>>>>>> origin/GameSequence
 public:
     /* Constructors and Destructor */
     GameObject(Asteroid_GameObject_Type type, SDL_Point location, int height,
                int width, Asteroid_Direction _rotation, int _x_velocity,
+<<<<<<< HEAD
                int _y_velocity, int _health, int _damage)
     {
         objectType = type;
@@ -82,6 +91,9 @@ public:
         health = _health;
         damage = _damage;
     }
+=======
+               int _y_velocity, int _health, int _damage);
+>>>>>>> origin/GameSequence
     
     GameObject(const GameObject& other) {
         objectType = other.objectType;
@@ -96,17 +108,21 @@ public:
         damage = other.damage;
     }
     
-    virtual ~GameObject(){};
+    virtual ~GameObject(){}
     
     /* Overloadable Operations */
     
 	// Make the object move
+<<<<<<< HEAD
 	virtual void move()
     {
         collision_rect.x += x_velocity;
         collision_rect.y += y_velocity;
         movedOffScreen();
     }
+=======
+    virtual void move();
+>>>>>>> origin/GameSequence
 
 	// Draw the object onto the game window surface
 	// Doesn't do anything in this class
@@ -121,7 +137,7 @@ public:
     // Destroy the object; returns a list of new objects that replace it
     virtual list<GameObject*> * destroy()
     {
-        list<GameObject*> *temp = new list<GameObject*>();
+        list<GameObject*> *temp = new list<GameObject*>;
         return temp;
     }
     
@@ -132,7 +148,11 @@ public:
     {
         return health<=0;
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> origin/GameSequence
 	/* Getters */
 	Asteroid_GameObject_Type getObjectType()
     {
@@ -143,7 +163,13 @@ public:
     {
         return damage;
     }
+<<<<<<< HEAD
 };
 
+=======
+    
+    static void collision(GameObject *obj1, GameObject *obj2);
+};
+>>>>>>> origin/GameSequence
 
 #endif /* GAMEOBJECT_H_ */

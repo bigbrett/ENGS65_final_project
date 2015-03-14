@@ -29,6 +29,7 @@ public:
     /* Overloaded functions */
     void move();    // Overloaded for distance_traveled and becaues bullets
                     // don't screen-wrap, so no movedOffScreen() call
+    void draw(SDL_Renderer *rend);
 };
 
 #endif /* BULLET_H_ */
