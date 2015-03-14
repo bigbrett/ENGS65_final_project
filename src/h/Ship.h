@@ -23,18 +23,20 @@ using namespace std;
 class Ship: public GameObject
 {
 private:
+    int lives;
 	int shield;					// Damage reduction from collisions
     bool accelerate;
     
 public:
-	Ship();
+	Ship(int numLives);
     Ship(const Ship& other);
     virtual ~Ship() {} // Nothing to destroy
 
 	/* Overloaded Functions */
 	void takeDmg(int dmg, Asteroid_GameObject_Type type);
-    list<GameObject*> * destroy();
+//    list<GameObject*> * destroy();
     void draw(SDL_Renderer* rend);
+    bool isDestroyed();
     
     /* Ship Specific Functions */
 
@@ -51,6 +53,12 @@ public:
     
     // Set whether the ship should be accelerating or not
     void setAccelerate(bool accel);
+    
+    // Get remaining number of lives
+    int getLives()
+    {
+        return lives;
+    }
     
     // Handle a keyboard arrow press event
 //    void handleKeyboardEvent(SDL_Event &e);
