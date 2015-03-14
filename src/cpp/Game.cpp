@@ -178,28 +178,23 @@ void Game::handleEvents()
             switch (eventQ.key.keysym.scancode) {
                     // Handle up key
                 case SDL_SCANCODE_UP:
-                    cout << "KeyUp UP!" << endl;
                     ship->setAccelerate(false);
                     break;
                     
                     // Handle down key
                 case SDL_SCANCODE_DOWN:
-                    cout << "KeyUp DOWN!" << endl;
                     break;
                     
                     // Handle left key
                 case SDL_SCANCODE_LEFT:
-                    cout << "KeyUp LEFT!" << endl;
                     break;
                     
                     // Handle right key
                 case SDL_SCANCODE_RIGHT:
-                    cout << "KeyUp RIGHT!" << endl;
                     break;
                     
                     // Handle space
                 case SDL_SCANCODE_SPACE:
-                    cout << "KeyUp SPACEBAR" << endl;
                     break;
                     
                 default:
