@@ -16,6 +16,7 @@
 #include <ctime>
 #include <list>
 #include <random>
+#include <SDL2_ttf/SDL_ttf.h>
 
 #include <SDL2/SDL.h>
 #include "GameObject.h"
@@ -26,6 +27,7 @@
 #include "Renderer.h"
 #include "Window.h"
 #include "Globals.h"
+#include "TextRenderer.h"
 
 
 

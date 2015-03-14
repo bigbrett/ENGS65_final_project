@@ -42,6 +42,8 @@ Game::Game(int startingNumAsteroids, int startingLives, int startingScore)
 
     keyboardState = SDL_GetKeyboardState(NULL);
     
+    TextRenderer::initText();
+    
 	this->renderer = new Renderer(this->window.gWindow);
 	this->play();
 }
@@ -75,9 +77,9 @@ void Game::play()
         // Draw the game
         this->drawGame();
         }
-        
-        
     }
+    
+    TextRenderer::quitText();
 }
 
 
@@ -265,6 +267,8 @@ bool Game::drawGame()
 
     
     renderer->clear();
+    
+    // Draw the game objects
 	list <GameObject *>::iterator in_play_iter;
 	if (!objectsInPlay.empty())
     {
@@ -276,6 +280,9 @@ bool Game::drawGame()
 	}
 	else
 		flag = false;
+    
+    // Add lives text
+    TextRenderer::printLives(renderer->gRenderer, ship->getLives());
     
     renderer->present();
 
