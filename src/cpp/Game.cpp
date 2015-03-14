@@ -63,12 +63,16 @@ void Game::play()
         // Handle events in the event queue
         this->handleEvents();
         
-        // If we have reached the key-repeat delay, check the keyboard
-        // Check for pressed keys
-        if(checkKeyboard) this->handleKeyboard();
-        
-        // Update game state
-        this->updateState();
+        if (ship->getLives() > 0 &&
+               Asteroid::getNumAsteroidsRemaining() > 0)
+        {
+            // If we have reached the key-repeat delay, check the keyboard
+            // Check for pressed keys
+            if(checkKeyboard) this->handleKeyboard();
+            
+            // Update game state
+            this->updateState();
+        }
         
         // Draw the game
         this->drawGame();

@@ -24,7 +24,6 @@ Asteroid::Asteroid(Asteroid_Size _size, SDL_Point location, int _x_velocity,
 Asteroid::Asteroid(const Asteroid& other) : GameObject(other)
 {
     size = other.size;
-    numAsteroids--;
 }
 
 void Asteroid::takeDmg(int dmg, Asteroid_GameObject_Type type)

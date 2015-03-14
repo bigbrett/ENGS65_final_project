@@ -28,7 +28,7 @@ class Asteroid: public GameObject
 public:
     Asteroid(Asteroid_Size _size, SDL_Point location, int _x_velocity, int _y_velocity);
     Asteroid(const Asteroid& other);
-    virtual ~Asteroid() {};     // Nothing to delete
+    virtual ~Asteroid() {numAsteroids--;};
     
     /* Overloaded Functions */
     void takeDmg(int dmg, Asteroid_GameObject_Type type);
