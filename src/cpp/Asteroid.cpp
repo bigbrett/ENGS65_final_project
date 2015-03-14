@@ -72,3 +72,124 @@ list<GameObject*> * Asteroid::destroy()
     
     return temp;
 }
+
+/*
+ * Draw an asteroid
+ */
+void Asteroid::draw(SDL_Renderer* rend)
+{
+    float cosA = cos(rotation);
+    float sinA = sin(rotation);
+    
+    SDL_Point* lines = new SDL_Point[10];
+    SDL_Rect pos = collision_rect;
+    pos.x = pos.x + pos.w / 2;  // Move coordinates to center of the rectangle
+    pos.y = pos.y + pos.h / 2;
+    
+    switch (size)
+    {
+        case AS_LARGE:
+            lines[0] = { int(cosA * (pos.x - pos.x) - sinA * (pos.y - 50 - pos.y) + pos.x),
+                int(sinA * (pos.x - pos.x) + cosA * (pos.y - 50 - pos.y) + pos.y) };
+            
+            
+            lines[1] = { int(cosA * (pos.x + 30 - pos.x) - sinA * (pos.y - 40 - pos.y) + pos.x),
+                int(sinA * (pos.x + 30 - pos.x) + cosA * (pos.y - 40 - pos.y) + pos.y) };
+            
+            lines[2] = { int(cosA * (pos.x + 50 - pos.x) - sinA * (pos.y - 10 - pos.y) + pos.x),
+                int(sinA * (pos.x + 50 - pos.x) + cosA * (pos.y - 10 - pos.y) + pos.y) };
+            
+            lines[3] = { int(cosA * (pos.x + 35 - pos.x) - sinA * (pos.y + 20 - pos.y) + pos.x),
+                int(sinA * (pos.x + 35 - pos.x) + cosA * (pos.y + 20 - pos.y) + pos.y) };
+            
+            lines[4] = { int(cosA * (pos.x + 15 - pos.x) - sinA * (pos.y + 50 - pos.y) + pos.x),
+                int(sinA * (pos.x + 15 - pos.x) + cosA * (pos.y + 50 - pos.y) + pos.y) };
+            
+            lines[5] = { int(cosA * (pos.x - 10 - pos.x) - sinA * (pos.y + 45 - pos.y) + pos.x),
+                int(sinA * (pos.x - 10 - pos.x) + cosA * (pos.y + 45 - pos.y) + pos.y) };
+            
+            lines[6] = { int(cosA * (pos.x - 40 - pos.x) - sinA * (pos.y + 40 - pos.y) + pos.x),
+                int(sinA * (pos.x - 40 - pos.x) + cosA * (pos.y + 40 - pos.y) + pos.y) };
+            
+            lines[7] = { int(cosA * (pos.x - 30 - pos.x) - sinA * (pos.y - 10 - pos.y) + pos.x),
+                int(sinA * (pos.x - 30 - pos.x) + cosA * (pos.y - 10 - pos.y) + pos.y) };
+            
+            lines[8] = { int(cosA * (pos.x - 10 - pos.x) - sinA * (pos.y - 15 - pos.y) + pos.x),
+                int(sinA * (pos.x - 10 - pos.x) + cosA * (pos.y - 15 - pos.y) + pos.y) };
+            
+            lines[9] = { int(cosA * (pos.x - pos.x) - sinA * (pos.y - 50 - pos.y) + pos.x),
+                int(sinA * (pos.x - pos.x) + cosA * (pos.y - 50 - pos.y) + pos.y) };
+            break;
+            
+        case AS_MED:
+            lines[0] = { int(cosA * (pos.x - pos.x) - sinA * (pos.y - 25 - pos.y) + pos.x),
+                int(sinA * (pos.x - pos.x) + cosA * (pos.y - 25 - pos.y) + pos.y) };
+            
+            lines[1] = { int(cosA * (pos.x + 20 - pos.x) - sinA * (pos.y - 40 - pos.y) + pos.x),
+                int(sinA * (pos.x + 20 - pos.x) + cosA * (pos.y - 40 - pos.y) + pos.y) };
+            
+            lines[2] = { int(cosA * (pos.x + 30 - pos.x) - sinA * (pos.y - 10 - pos.y) + pos.x),
+                int(sinA * (pos.x + 30 - pos.x) + cosA * (pos.y - 10 - pos.y) + pos.y) };
+            
+            lines[3] = { int(cosA * (pos.x + 30 - pos.x) - sinA * (pos.y + 15 - pos.y) + pos.x),
+                int(sinA * (pos.x + 30 - pos.x) + cosA * (pos.y + 15 - pos.y) + pos.y) };
+            
+            lines[4] = { int(cosA * (pos.x + 15 - pos.x) - sinA * (pos.y + 30 - pos.y) + pos.x),
+                int(sinA * (pos.x + 15 - pos.x) + cosA * (pos.y + 30 - pos.y) + pos.y) };
+            
+            lines[5] = { int(cosA * (pos.x - 10 - pos.x) - sinA * (pos.y + 25 - pos.y) + pos.x),
+                int(sinA * (pos.x - 10 - pos.x) + cosA * (pos.y + 25 - pos.y) + pos.y) };
+            
+            lines[6] = { int(cosA * (pos.x - 25 - pos.x) - sinA * (pos.y + 25 - pos.y) + pos.x),
+                int(sinA * (pos.x - 25 - pos.x) + cosA * (pos.y + 25 - pos.y) + pos.y) };
+            
+            lines[7] = { int(cosA * (pos.x - 25 - pos.x) - sinA * (pos.y - 10 - pos.y) + pos.x),
+                int(sinA * (pos.x - 25 - pos.x) + cosA * (pos.y - 10 - pos.y) + pos.y) };
+            
+            lines[8] = { int(cosA * (pos.x - 10 - pos.x) - sinA * (pos.y - 15 - pos.y) + pos.x),
+                int(sinA * (pos.x - 10 - pos.x) + cosA * (pos.y - 15 - pos.y) + pos.y) };
+            
+            lines[9] = { int(cosA * (pos.x - pos.x) - sinA * (pos.y - 25 - pos.y) + pos.x),
+                int(sinA * (pos.x - pos.x) + cosA * (pos.y - 25 - pos.y) + pos.y) };
+            
+            break;
+            
+        case AS_SMALL:
+            lines[0] = { int(cosA * (pos.x - pos.x) - sinA * (pos.y - 10 - pos.y) + pos.x),
+                int(sinA * (pos.x - pos.x) + cosA * (pos.y - 10 - pos.y) + pos.y) };
+            
+            lines[1] = { int(cosA * (pos.x + 8 - pos.x) - sinA * (pos.y - 3 - pos.y) + pos.x),
+                int(sinA * (pos.x + 8 - pos.x) + cosA * (pos.y - 3 - pos.y) + pos.y) };
+            
+            lines[2] = { int(cosA * (pos.x + 3 - pos.x) - sinA * (pos.y - 0 - pos.y) + pos.x),
+                int(sinA * (pos.x + 3 - pos.x) + cosA * (pos.y - 0 - pos.y) + pos.y) };
+            
+            lines[3] = { int(cosA * (pos.x + 5 - pos.x) - sinA * (pos.y + 8 - pos.y) + pos.x),
+                int(sinA * (pos.x + 5 - pos.x) + cosA * (pos.y + 8 - pos.y) + pos.y) };
+            
+            lines[4] = { int(cosA * (pos.x + 8 - pos.x) - sinA * (pos.y + 13 - pos.y) + pos.x),
+                int(sinA * (pos.x + 8 - pos.x) + cosA * (pos.y + 13 - pos.y) + pos.y) };
+            
+            lines[5] = { int(cosA * (pos.x - 8 - pos.x) - sinA * (pos.y + 18 - pos.y) + pos.x),
+                int(sinA * (pos.x - 8 - pos.x) + cosA * (pos.y + 18 - pos.y) + pos.y) };
+            
+            lines[6] = { int(cosA * (pos.x - 13 - pos.x) - sinA * (pos.y + 3 - pos.y) + pos.x),
+                int(sinA * (pos.x - 13 - pos.x) + cosA * (pos.y + 3 - pos.y) + pos.y) };
+            
+            lines[7] = { int(cosA * (pos.x - 8 - pos.x) - sinA * (pos.y - 3 - pos.y) + pos.x),
+                int(sinA * (pos.x - 8 - pos.x) + cosA * (pos.y - 3 - pos.y) + pos.y) };
+            
+            lines[8] = { int(cosA * (pos.x - 0 - pos.x) - sinA * (pos.y - 8 - pos.y) + pos.x),
+                int(sinA * (pos.x - 0 - pos.x) + cosA * (pos.y - 8 - pos.y) + pos.y) };
+            
+            lines[9] = { int(cosA * (pos.x - pos.x) - sinA * (pos.y - 10 - pos.y) + pos.x),
+                int(sinA * (pos.x - pos.x) + cosA * (pos.y - 10 - pos.y) + pos.y) };
+            
+            break;
+    } // switch
+    
+    // Render and draw 
+    SDL_SetRenderDrawColor(rend, 255,255,255, 255);
+    SDL_RenderDrawLines(rend, lines, 10);
+}
+

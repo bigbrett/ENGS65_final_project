@@ -33,67 +33,16 @@ protected:
 	int health;								// Current health
 	int damage;								// Base damage the object does
 
-<<<<<<< HEAD
-    //The window we'll be rendering to
-    SDL_Window* gWindow = NULL;
-    
-    //The window renderer
-    SDL_Renderer* gRenderer = NULL;
-    
-    //Scene textures
-  //  LTexture gTexture;
-
-  // Check for moving offscreen
-  void movedOffScreen()
-  {
-	  // Check against having moved off left
-	  if (collision_rect.x + collision_rect.w < 0) {
-		  collision_rect.x = collision_rect.x + GAME_WIDTH;
-	  }
-
-	  // Check against having moved off right
-	  if (collision_rect.x > GAME_WIDTH) {
-		  collision_rect.x = GAME_WIDTH - collision_rect.x;
-	  }
-
-	  // Check against having moved off top
-	  if (collision_rect.y + collision_rect.h < 0) {
-		  collision_rect.y = collision_rect.y + GAME_HEIGHT;
-	  }
-
-	  // Check against having moved off bottom
-	  if (collision_rect.y > GAME_HEIGHT) {
-		  collision_rect.y = GAME_HEIGHT - collision_rect.y;
-	  }
-  }
-=======
     
     // Check for moving offscreen
     void movedOffScreen();
     
     
->>>>>>> origin/GameSequence
 public:
     /* Constructors and Destructor */
     GameObject(Asteroid_GameObject_Type type, SDL_Point location, int height,
                int width, Asteroid_Direction _rotation, int _x_velocity,
-<<<<<<< HEAD
-               int _y_velocity, int _health, int _damage)
-    {
-        objectType = type;
-        collision_rect.x = location.x;
-        collision_rect.y = location.y;
-        collision_rect.h = height;
-        collision_rect.w = width;
-        rotation = _rotation;
-        x_velocity = _x_velocity;
-        y_velocity = _y_velocity;
-        health = _health;
-        damage = _damage;
-    }
-=======
                int _y_velocity, int _health, int _damage);
->>>>>>> origin/GameSequence
     
     GameObject(const GameObject& other) {
         objectType = other.objectType;
@@ -109,21 +58,10 @@ public:
     }
     
     virtual ~GameObject(){}
+    void move();
     
     /* Overloadable Operations */
     
-	// Make the object move
-<<<<<<< HEAD
-	virtual void move()
-    {
-        collision_rect.x += x_velocity;
-        collision_rect.y += y_velocity;
-        movedOffScreen();
-    }
-=======
-    virtual void move();
->>>>>>> origin/GameSequence
-
 	// Draw the object onto the game window surface
 	// Doesn't do anything in this class
     virtual void draw(SDL_Renderer* rend){}
@@ -148,11 +86,7 @@ public:
     {
         return health<=0;
     }
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> origin/GameSequence
 	/* Getters */
 	Asteroid_GameObject_Type getObjectType()
     {
@@ -163,13 +97,8 @@ public:
     {
         return damage;
     }
-<<<<<<< HEAD
-};
-
-=======
     
     static void collision(GameObject *obj1, GameObject *obj2);
 };
->>>>>>> origin/GameSequence
 
 #endif /* GAMEOBJECT_H_ */
