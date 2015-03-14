@@ -13,7 +13,7 @@
 #define GAME_HEIGHT 720
 #define KEYBOARD_TIMER_INTERVAL   100
 
-#define FONT_PATH   "media/data-latin.ttf"
+#define FONT_PATH   "/Users/Dan1/git/ENGS65_final_project/src/media/data-latin.ttf"
 
 #define PI 3.14159
 #define ANGLE_INC 2*PI/AD_SIZE
@@ -31,6 +31,7 @@
 #define SHIP_DEFAULT_SIZE       20
 #define SHIP_DEFAULT_HEALTH     5
 #define SHIP_DEFAULT_SPEED      3
+#define SHIP_GUN_UPGRADE_SCORE  45
 
 #define ASTEROID_DEFAULT_SIZE   AS_LARGE
 #define ASTEROID_BASE_SIZE      25

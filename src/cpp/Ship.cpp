@@ -19,6 +19,7 @@ Ship::Ship(int startingLives)
     lives = startingLives;
     shield = 0;
     accelerate = false;
+    gun = new ShipGun();
 }
 
 Ship::Ship(const Ship& other) : GameObject(other)
@@ -52,7 +53,7 @@ bool Ship::isDestroyed()
     return false;
 }
 
-Bullet * Ship::shoot()
+list<Bullet*> * Ship::shoot()
 {
     SDL_Point loc;
     loc.x = collision_rect.x + collision_rect.w / 2;
@@ -60,11 +61,7 @@ Bullet * Ship::shoot()
     loc.x = int(cos(rotation) * collision_rect.w + loc.x);
     loc.y = int(-sin(rotation) * collision_rect.h + loc.y);
     
-    int x_vel = cos(rotation) * BULLET_DEFAULT_SPEED;
-    int y_vel = -sin(rotation) * BULLET_DEFAULT_SPEED;
-    
-    Bullet *newBullet = new Bullet(loc, x_vel , y_vel, BULLET_DEFAULT_DAMAGE);
-    return newBullet;
+    return gun->shoot(loc, rotation);
 }
 
 void Ship::draw(SDL_Renderer* rend)

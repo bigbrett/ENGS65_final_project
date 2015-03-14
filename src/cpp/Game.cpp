@@ -248,6 +248,9 @@ bool Game::updateState()
                 if((*in_play_iter)->getObjectType() == AGT_ASTEROID)
                 {
                     score++;
+                    if (score == SHIP_GUN_UPGRADE_SCORE) {
+                        ship->upgradeGun();
+                    }
                 }
                 delete (*in_play_iter); // delete the data at the location
                 objectsInPlay.remove((*in_play_iter));  // remove the pointer
@@ -326,8 +329,17 @@ void Game::handleKeyboard()
     if(keyboardState[SDL_SCANCODE_SPACE])
     {
         cout << "KeyDown SPACEBAR" << endl;
-        Bullet *newBullet = ship->shoot();
-        objectsInPlay.push_back(newBullet);
+        list<Bullet*> *newBullets = ship->shoot();
+        list <Bullet*>::iterator in_play_iter;
+        if (!(newBullets->empty()))
+        {
+            for (in_play_iter = newBullets->begin();
+                 in_play_iter != newBullets->end(); in_play_iter++)
+            {
+                objectsInPlay.push_back(*in_play_iter);
+            }
+            delete newBullets;
+        }
     }
     
     checkKeyboard = false;
