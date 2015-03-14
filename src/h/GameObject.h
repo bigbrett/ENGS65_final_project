@@ -25,21 +25,13 @@ class GameObject
 protected:
 	Asteroid_GameObject_Type objectType;	// Set to the type of GameObject
     SDL_Rect collision_rect;                // Object's collision rectangle
-	Asteroid_Direction rotation;			// Rotation of the object,
+	float rotation;                         // Rotation of the object,
                                             // AD_N = 0 degrees of rotation
 	int x_velocity;                         // +/- x speed
     int y_velocity;                         // +/- y speed
 	int health;								// Current health
 	int damage;								// Base damage the object does
 
-    //The window we'll be rendering to
-    SDL_Window* gWindow = NULL;
-    
-    //The window renderer
-    SDL_Renderer* gRenderer = NULL;
-    
-    //Scene textures
-  //  LTexture gTexture;
     
     // Check for moving offscreen
     void movedOffScreen();
@@ -49,19 +41,7 @@ public:
     /* Constructors and Destructor */
     GameObject(Asteroid_GameObject_Type type, SDL_Point location, int height,
                int width, Asteroid_Direction _rotation, int _x_velocity,
-               int _y_velocity, int _health, int _damage)
-    {
-        objectType = type;
-        collision_rect.x = location.x;
-        collision_rect.y = location.y;
-        collision_rect.h = height;
-        collision_rect.w = width;
-        rotation = _rotation;
-        x_velocity = _x_velocity;
-        y_velocity = _y_velocity;
-        health = _health;
-        damage = _damage;
-    }
+               int _y_velocity, int _health, int _damage);
     
     GameObject(const GameObject& other) {
         objectType = other.objectType;

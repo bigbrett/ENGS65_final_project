@@ -38,6 +38,9 @@ private:
     Window window; // wrapper class for SDL window object
     Renderer* renderer; // wrapper class for SDL graphics renderer object
     SDL_Event eventQ; // SDL event queue
+    const Uint8 *keyboardState;         // Array of keyboard states
+    SDL_TimerID keyboardTimer;          // Timer to control keyboard polling
+    bool checkKeyboard;                 // Flag set by keyboardTimer
     
     list<GameObject*> objectsInPlay; 	// A DLL to hold all the GameObjects
     Ship *ship;                         // So we can always directly access ship
@@ -45,6 +48,8 @@ private:
     int score;                          // Player current score
     
     
+    // Callback function for the keyboard timer
+//    Uint32 keyboardCallbackFunction(Uint32 interval, void *param);
     
 public:
     Game(int startingNumAsteroids, int startingLives, int startingScore);
@@ -59,6 +64,9 @@ public:
     
     // Have the game draw itself onto the window. Returns TRUE if successful
     bool drawGame();
+    
+    // Deal with any keys pressed on the keyboard, if checkKeyboard is TRUE
+    void handleKeyboard();
 };
 
 #endif /* GAME_H_ */
