@@ -11,6 +11,7 @@
 
 #define GAME_WIDTH  640
 #define GAME_HEIGHT 480
+#define KEYBOARD_TIMER_INTERVAL   100
 
 #define PI 3.14159
 #define ANGLE_INC 2*PI/AD_SIZE

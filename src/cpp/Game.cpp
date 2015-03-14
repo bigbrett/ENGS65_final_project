@@ -32,11 +32,18 @@
 //    }
 //};
 
+Uint32 keyboardCallbackFunction(Uint32 interval, void *param);
 
 Game::Game(int startingNumAsteroids, int startingLives, int startingScore)
 {
-	lives = startingLives;
+	// Initialize player related game variables
+    lives = startingLives;
 	score = startingScore;
+    
+    // Initialize keyboard polling variables
+    checkKeyboard = false;
+    keyboardTimer = SDL_AddTimer(KEYBOARD_TIMER_INTERVAL,
+                                 keyboardCallbackFunction, &checkKeyboard);
 
 	// Create random number generator for placing asteroids on the field
 	default_random_engine generator;
@@ -78,11 +85,13 @@ void Game::play()
     cout << "starting game!!" << endl;
     while (this->graphicsDriver.isRunning())
     {
+        
         // Handle events in the event queue
         this->handleEvents();
         
+        // If we have reached the key-repeat delay, check the keyboard
         // Check for pressed keys
-        this->handleKeyboard();
+        if(checkKeyboard) this->handleKeyboard();
         
         // Update game state
         this->updateState();
@@ -104,8 +113,11 @@ void Game::handleEvents()
         
         // Handle quit event
         if (eventQ.type == SDL_QUIT)
+        {
+            SDL_RemoveTimer(keyboardTimer);
             graphicsDriver.exit();
         
+        }
         // handle window events
         else if (eventQ.type == SDL_WINDOWEVENT)
         {
@@ -122,42 +134,43 @@ void Game::handleEvents()
         }
         
         // Handle KeyDown event for U/D/R/L keys
-        else if (eventQ.type == SDL_KEYDOWN)
-        {
-            switch (eventQ.key.keysym.scancode) {
-                    
-                    // Handle up key
-                case SDL_SCANCODE_UP:
-                    cout << "KeyDown UP!" << endl;
-                    ship->setAccelerate(true);
-                    break;
-                    
-                    // Handle down key
-                case SDL_SCANCODE_DOWN:
-                    cout << "KeyDown DOWN!" << endl;
-                    break;
-                    
-                    // Handle left key
-                case SDL_SCANCODE_LEFT:
-                    cout << "KeyDown LEFT!" << endl;
-                    ship->rotateCCW();
-                    break;
-                    
-                    // Handle right key
-                case SDL_SCANCODE_RIGHT:
-                    cout << "KeyDown RIGHT!" << endl;
-                    ship->rotateCW();
-                    break;
-                    
-                    // Handle space
-                case SDL_SCANCODE_SPACE:
-                    cout << "KeyDown SPACEBAR" << endl;
-                    break;
-                    
-                default:
-                    break;
-            } // switch
-        }
+//        else if (eventQ.type == SDL_KEYDOWN)
+//        {
+//            switch (eventQ.key.keysym.scancode) {
+//                    
+//                    // Handle up key
+//                case SDL_SCANCODE_UP:
+//                    cout << "KeyDown UP!" << endl;
+//                    ship->setAccelerate(true);
+//                    cout << SDL_GetTicks() << endl;
+//                    break;
+//                    
+//                    // Handle down key
+//                case SDL_SCANCODE_DOWN:
+//                    cout << "KeyDown DOWN!" << endl;
+//                    break;
+//                    
+//                    // Handle left key
+//                case SDL_SCANCODE_LEFT:
+//                    cout << "KeyDown LEFT!" << endl;
+//                    ship->rotateCCW();
+//                    break;
+//                    
+//                    // Handle right key
+//                case SDL_SCANCODE_RIGHT:
+//                    cout << "KeyDown RIGHT!" << endl;
+//                    ship->rotateCW();
+//                    break;
+//                    
+//                    // Handle space
+//                case SDL_SCANCODE_SPACE:
+//                    cout << "KeyDown SPACEBAR" << endl;
+//                    break;
+//                    
+//                default:
+//                    break;
+//            } // switch
+//        }
         
         // Handle KeyUp event for U/D/R/L keys
         else if (eventQ.type == SDL_KEYUP)
@@ -230,7 +243,43 @@ bool Game::drawGame()
 
 void Game::handleKeyboard()
 {
-    if (keyboardState[SDL_SCANCODE_UP]) {
-        cout << "KeyState Up" << endl;
+    // Handle up key
+    if(keyboardState[SDL_SCANCODE_UP])
+    {
+        cout << "KeyDown UP!" << endl;
+        ship->setAccelerate(true);
     }
+    
+    // Handle down key
+    if(keyboardState[SDL_SCANCODE_DOWN])
+    {
+        cout << "KeyDown DOWN!" << endl;
+    }
+    
+    // Handle left key
+    if(keyboardState[SDL_SCANCODE_LEFT])
+    {
+        cout << "KeyDown LEFT!" << endl;
+        ship->rotateCCW();
+    }
+    
+    // Handle right key
+    if(keyboardState[SDL_SCANCODE_RIGHT])
+    {
+        cout << "KeyDown RIGHT!" << endl;
+        ship->rotateCW();
+    }
+    
+    // Handle space
+    if(keyboardState[SDL_SCANCODE_SPACE])
+    {
+        cout << "KeyDown SPACEBAR" << endl;
+    }
+    
+    checkKeyboard = false;
+}
+
+Uint32 keyboardCallbackFunction(Uint32 interval, void *param) {
+    *((bool*)param) = true;
+    return interval;
 }
