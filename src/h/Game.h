@@ -67,6 +67,7 @@ public:
     
     // Deal with any keys pressed on the keyboard, if checkKeyboard is TRUE
     void handleKeyboard();
+    
 };
 
 #endif /* GAME_H_ */

@@ -16,6 +16,7 @@
 #include <string>
 #include <list>
 #include <cmath>
+
 #include "Globals.h"
 
 using namespace std;
@@ -57,15 +58,13 @@ public:
     }
     
     virtual ~GameObject(){}
+    virtual void move();
     
     /* Overloadable Operations */
     
-	// Make the object move
-    virtual void move();
-
 	// Draw the object onto the game window surface
 	// Doesn't do anything in this class
-    virtual void draw(SDL_Renderer* rend){};
+    virtual void draw(SDL_Renderer* rend){}
 
 	// Damage the object from a collision
 	virtual void takeDmg(int dmg, Asteroid_GameObject_Type type)

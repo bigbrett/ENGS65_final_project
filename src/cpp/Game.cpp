@@ -47,14 +47,14 @@ Game::Game(int startingNumAsteroids, int startingLives, int startingScore)
 
 	// Create random number generator for placing asteroids on the field
 	default_random_engine generator;
+    uniform_int_distribution <int> x_gen(0, GAME_WIDTH);
 	uniform_int_distribution <int> y_gen(0, GAME_HEIGHT);
-	uniform_int_distribution <int> x_gen(0, GAME_WIDTH);
-	uniform_int_distribution <int> v_gen(0, ASTEROID_MAX_SPEED);
+	uniform_int_distribution <int> v_gen(1, ASTEROID_MAX_SPEED);
 
 	// Put the ship into the list
     ship = new Ship();
 	objectsInPlay.push_front(ship);
-
+    
 	// Add the asteroids in
 	for (int i = 0; i < startingNumAsteroids; i++) {
 		SDL_Point p;

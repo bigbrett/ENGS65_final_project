@@ -28,13 +28,13 @@
 #define SHIP_DEFAULT_ROTATION   AD_N
 #define SHIP_DEFAULT_SIZE       10
 #define SHIP_DEFAULT_HEALTH     5
-#define SHIP_DEFAULT_SPEED      5
+#define SHIP_DEFAULT_SPEED      3
 
 #define ASTEROID_DEFAULT_SIZE   AS_LARGE
 #define ASTEROID_BASE_SIZE      1
 #define ASTEROID_BASE_HEALTH    1
 #define ASTEROID_BASE_DAMAGE    2
-#define ASTEROID_MAX_SPEED      11  // To scale speed based on size: speed/size
+#define ASTEROID_MAX_SPEED      3  // To scale speed based on size: speed/size
 // Allows for speeds 0-3 for large, 0-5 for
 // medium and 0-11 for small
 
@@ -44,7 +44,7 @@
 #define BULLET_DEFAULT_SPEED    10
 #define BULLET_MAX_DISTANCE     400
 
-#define DEFAULT_NUM_ASTEROIDS 10
+#define DEFAULT_NUM_ASTEROIDS 3
 #define DEFAULT_NUM_LIVES 3
 
 enum Asteroid_GameObject_Type

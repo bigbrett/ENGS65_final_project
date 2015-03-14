@@ -15,7 +15,7 @@
 
 int main( int argc, char* args[] )
 {
-    Game(5,5,0);
+    Game(3,5,0);
     
     return 0;
 }
