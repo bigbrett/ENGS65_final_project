@@ -17,6 +17,8 @@
 
 #include "GameObject.h"
 #include "Bullet.h"
+#include "ShipGun.h"
+#include "BigShipGun.h"
 
 using namespace std;
 
@@ -26,6 +28,7 @@ private:
     int lives;
     int shield;					// Damage reduction from collisions
     bool accelerate;
+    ShipGun *gun;
     
 public:
 	Ship(int startingLives);
@@ -42,7 +45,7 @@ public:
 	// Shoot function
 	// Returns a new Bullet object located at the front of the ship,
     // traveling in the direction the ship is pointing
-	Bullet * shoot();
+	list<Bullet*> * shoot();
     
     // Rotate the ship 1 ANGLE_INC CW
     void rotateCW();
@@ -59,8 +62,12 @@ public:
         return lives;
     }
     
-    // Handle a keyboard arrow press event
-//    void handleKeyboardEvent(SDL_Event &e);
+    // Upgrade the Ship's Gun
+    void upgradeGun()
+    {
+        delete gun;
+        gun = new BigShipGun();
+    }
 };
 
 #endif /* SHIP_H_ */
